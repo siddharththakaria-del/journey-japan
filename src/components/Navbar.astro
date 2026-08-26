@@ -23,13 +23,13 @@ const { onToggle } = Astro.props as { onToggle?: () => void };
         <a class="button button--primary" href="/journey-japan/customise-your-trip/">Plan My Journey</a>
       </div>
 
-      <button class="mobile-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+      <button type="button" class="mobile-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
     </div>
   </div>
 
   <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
     <div class="mobile-menu__inner">
-      <button class="mobile-close" aria-label="Close menu">Close</button>
+      <button type="button" class="mobile-close" aria-label="Close menu">Close</button>
       <nav class="mobile-nav" aria-label="Mobile primary">
         <a href="/journey-japan/">Home</a>
         <a href="/journey-japan/packages/">Packages</a>
@@ -109,19 +109,26 @@ const { onToggle } = Astro.props as { onToggle?: () => void };
 }
 
 /* Mobile full screen menu */
-.mobile-menu{position:fixed;inset:0;visibility:hidden;opacity:0;transform:translateY(6%);transition:opacity 240ms,transform 240ms,visibility 240ms;z-index:90;background:rgba(248,246,241,0.98);backdrop-filter:blur(6px);}
+.mobile-menu{position:fixed;inset:0;visibility:hidden;opacity:0;transform:translateY(6%);transition:opacity 240ms,transform 240ms,visibility 240ms;z-index:130;background:#F8F6F1;border:1px solid rgba(23,23,23,0.10);box-shadow:0 16px 44px rgba(0,0,0,0.14);overflow-y:auto;overflow-x:hidden;}
 .header.menu-open .mobile-menu{visibility:visible;opacity:1;transform:none}
-.mobile-menu__inner{max-width:900px;margin:72px auto;padding:28px}
-.mobile-close{position:absolute;right:20px;top:18px;background:transparent;border:0;font-size:16px}
+.mobile-menu__inner{max-width:900px;margin:0 auto;padding:88px 28px 32px}
+.mobile-close{position:absolute;right:20px;top:18px;background:transparent;border:1px solid rgba(23,23,23,0.22);border-radius:8px;color:#171717;font-size:16px;font-weight:600;padding:8px 10px}
 .mobile-nav{display:flex;flex-direction:column;gap:18px;padding-top:18px}
 .mobile-nav a{font-size:20px;padding:12px 8px;color:var(--color-charcoal);font-weight:700}
 .mobile-cta{margin-top:18px}
 
 /* Small accessibility tweaks */
-.mobile-menu a:focus,.nav__links a:focus{outline:3px solid rgba(179,38,46,0.12);outline-offset:4px}
+.mobile-menu a:focus-visible,.mobile-close:focus-visible,.mobile-toggle:focus-visible{outline:3px solid rgba(179,38,46,0.55);outline-offset:4px}
+.nav__links a:focus{outline:3px solid rgba(179,38,46,0.12);outline-offset:4px}
 
 @media (min-width:1024px){
   .mobile-toggle{display:none !important}
+}
+
+@media (max-width:899px){
+  .mobile-toggle{color:#171717;background:rgba(255,255,255,0.78);border-color:rgba(23,23,23,0.18);font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+  .mobile-toggle:hover,.mobile-toggle:focus-visible{background:#FFFFFF;border-color:rgba(23,23,23,0.36)}
+  .mobile-toggle[aria-expanded="true"]{background:#F8F6F1;color:#171717}
 }
 
 </style>
@@ -131,10 +138,17 @@ const header = document.querySelector('.header');
 const toggle = document.querySelector('.mobile-toggle');
 const mobileMenu = document.getElementById('mobile-menu');
 const mobileClose = document.querySelector('.mobile-close');
+function setMenuOpen(open){
+  header.classList.toggle('menu-open', open);
+  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if(mobileMenu) mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+  document.body.style.overflow = open ? 'hidden' : '';
+}
 function checkScroll(){ if(window.scrollY > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled'); }
 checkScroll(); window.addEventListener('scroll', checkScroll, {passive:true});
-if(toggle){ toggle.addEventListener('click', ()=>{ const open = header.classList.toggle('menu-open'); toggle.setAttribute('aria-expanded', open? 'true' : 'false'); if(mobileMenu) mobileMenu.setAttribute('aria-hidden', open? 'false' : 'true'); }); }
-if(mobileClose){ mobileClose.addEventListener('click', ()=>{ header.classList.remove('menu-open'); toggle.setAttribute('aria-expanded','false'); if(mobileMenu) mobileMenu.setAttribute('aria-hidden','true'); }); }
+if(toggle){ toggle.addEventListener('click', ()=> setMenuOpen(!header.classList.contains('menu-open'))); }
+if(mobileClose){ mobileClose.addEventListener('click', ()=> setMenuOpen(false)); }
 // close when clicking a link
-document.querySelectorAll('.mobile-nav a').forEach(a=> a.addEventListener('click', ()=>{ header.classList.remove('menu-open'); if(toggle) toggle.setAttribute('aria-expanded','false'); if(mobileMenu) mobileMenu.setAttribute('aria-hidden','true'); }));
+document.querySelectorAll('.mobile-nav a').forEach(a=> a.addEventListener('click', ()=> setMenuOpen(false)));
+document.addEventListener('keydown', event=> { if(event.key === 'Escape' && header.classList.contains('menu-open')) setMenuOpen(false); });
 </script>
