@@ -189,7 +189,7 @@ const firstTimeVisitorSections: ArticleSection[] = [
       'Think about arrival and departure airports, travel time between cities and how much free time you want each day. A strong itinerary balances sightseeing with breathing room. Journey Japan can help with both curated package journeys and fully customized private journeys, depending on how much structure you want from the start.'
     ],
     links: [
-      { label: 'Explore packages', href: '/packages/' },
+      { label: 'Explore packages', href: '/journey-japan/packages/' },
       { label: 'Customize your trip', href: '/customise-your-trip/' }
     ]
   },
@@ -432,7 +432,7 @@ const bestTimeSections: ArticleSection[] = [
       'For travellers with vegetarian or Jain requirements, our established restaurant relationships can support more careful dining planning throughout the journey. We do not promise exact blossom dates or fixed seasonal events, but we can help you choose dates and destinations with the right balance of realism, comfort and seasonal appeal.'
     ],
     links: [
-      { label: 'Explore packages', href: '/packages/' },
+      { label: 'Explore packages', href: '/journey-japan/packages/' },
       { label: 'Customise your trip', href: '/customise-your-trip/' }
     ]
   },
@@ -634,7 +634,7 @@ const japanTripCostSections: ArticleSection[] = [
     ],
     links: [
       { label: 'Customise your trip', href: '/customise-your-trip/' },
-      { label: 'Explore packages', href: '/packages/' }
+      { label: 'Explore packages', href: '/journey-japan/packages/' }
     ]
   },
   {
@@ -746,9 +746,9 @@ const japanTripCostSections: ArticleSection[] = [
     ],
     links: [
       { label: 'Plan my journey', href: '/customise-your-trip/' },
-      { label: 'Explore packages', href: '/packages/' },
+      { label: 'Explore packages', href: '/journey-japan/packages/' },
       { label: 'Why Japan', href: '/why-japan/' },
-      { label: 'Travel guide', href: '/travel-guide/' }
+      { label: 'Travel guide', href: '/journey-japan/travel-guide/' }
     ]
   }
 ];
@@ -863,7 +863,7 @@ const vegetarianJainSections: ArticleSection[] = [
     ],
     links: [
       { label: 'Why Japan', href: '/why-japan/' },
-      { label: 'Travel guide', href: '/travel-guide/' }
+      { label: 'Travel guide', href: '/journey-japan/travel-guide/' }
     ]
   },
   {
@@ -935,7 +935,7 @@ const vegetarianJainSections: ArticleSection[] = [
     ],
     links: [
       { label: 'Plan my journey', href: '/customise-your-trip/' },
-      { label: 'Explore packages', href: '/packages/' }
+      { label: 'Explore packages', href: '/journey-japan/packages/' }
     ]
   },
   {
@@ -1210,7 +1210,7 @@ const honeymoonSections: ArticleSection[] = [
       'The best honeymoon itineraries are not built to impress with quantity. They are built to feel personal, relaxed and well considered. That is the difference between a nice trip and a honeymoon that actually reflects the couple taking it.'
     ],
     links: [
-      { label: 'Explore honeymoon packages', href: '/packages/japan-honeymoon/' },
+      { label: 'Explore honeymoon packages', href: '/journey-japan/packages/japan-honeymoon/' },
       { label: 'Plan my journey', href: '/customise-your-trip/' }
     ]
   },

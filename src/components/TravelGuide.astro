@@ -23,7 +23,7 @@ const vegetarianArticle = articles.find((article) => article.slug === 'vegetaria
     <div class="guide-grid">
       {guideArticles.map((article) => (
         <article class="guide-card">
-          <a href={`/travel-guide/${article.slug}/`} class="article-link" aria-label={article.title}>
+          <a href={`/journey-japan/travel-guide/${article.slug}/`} class="article-link" aria-label={article.title}>
             <img src={article.image} alt={article.title} />
             <div class="article-copy">
               <div class="article-category">{article.category}</div>
@@ -37,7 +37,7 @@ const vegetarianArticle = articles.find((article) => article.slug === 'vegetaria
     </div>
 
     <div class="guide-footer">
-      <a class="text-link" href={`/travel-guide/${vegetarianArticle?.slug}/`}>Vegetarian &amp; Jain Food in Japan <span aria-hidden="true">→</span></a>
+      <a class="text-link" href={`/journey-japan/travel-guide/${vegetarianArticle?.slug}/`}>Vegetarian &amp; Jain Food in Japan <span aria-hidden="true">→</span></a>
       <a href="/journey-japan/travel-guide/" class="travel-guide-link">Explore the Travel Guide <span aria-hidden="true">→</span></a>
     </div>
   </div>

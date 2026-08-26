@@ -31,7 +31,7 @@ const formatINR = (value: number) => `₹${new Intl.NumberFormat('en-IN', { maxi
               <span class="package-from">From</span>
               <strong>{formatINR(pkg.priceFromINR)}</strong>
             </div>
-            <a href={`/packages/${pkg.slug}/`} class="package-link">Explore Journey <span aria-hidden="true">→</span></a>
+            <a href={`/journey-japan/packages/${pkg.slug}/`} class="package-link">Explore Journey <span aria-hidden="true">→</span></a>
           </div>
         </article>
       ))}

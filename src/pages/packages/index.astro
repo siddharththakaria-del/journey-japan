@@ -57,7 +57,7 @@ const filters = [
             data-style={pkg.travelStyle}
             data-id={pkg.id}
           >
-            <a href={`/packages/${pkg.slug}/`} class="package-card__image-wrap" aria-label={`Explore ${pkg.title}`}>
+            <a href={`/journey-japan/packages/${pkg.slug}/`} class="package-card__image-wrap" aria-label={`Explore ${pkg.title}`}>
               <img src={pkg.image} alt={pkg.title} />
             </a>
             <div class="package-card__content">
@@ -67,7 +67,7 @@ const filters = [
               <p class="card-description">{pkg.description}</p>
               <div class="card-footer">
                 <div class="card-price">From ₹{pkg.price.toLocaleString('en-IN')}</div>
-                <a href={`/packages/${pkg.slug}/`} class="card-link">Explore Journey →</a>
+                <a href={`/journey-japan/packages/${pkg.slug}/`} class="card-link">Explore Journey →</a>
               </div>
             </div>
           </article>
