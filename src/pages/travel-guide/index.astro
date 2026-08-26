@@ -20,7 +20,7 @@ function formatUpdatedLabel(date) {
           <article class="card" style="display:flex;gap:12px;align-items:center;padding:12px">
             <img src={a.image} alt={a.title} style="width:140px;height:80px;object-fit:cover;border-radius:8px" />
             <div>
-              <a href={`/travel-guide/${a.slug}/`}><h3 class="h3">{a.title}</h3></a>
+              <a href={`/journey-japan/travel-guide/${a.slug}/`}><h3 class="h3">{a.title}</h3></a>
               <div class="small" style="color:var(--muted)">{a.updatedLabel ?? formatUpdatedLabel(a.date)} • {a.readingTime} read</div>
               <p class="small" style="margin-top:8px">{a.excerpt}</p>
             </div>
