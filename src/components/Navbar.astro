@@ -108,8 +108,8 @@ const { onToggle } = Astro.props as { onToggle?: () => void };
   .nav__logo img{height:40px}
 }
 
-/* Mobile full screen menu */
-.mobile-menu{position:fixed;inset:0;visibility:hidden;opacity:0;transform:translateY(6%);transition:opacity 240ms,transform 240ms,visibility 240ms;z-index:130;background:#F8F6F1;border:1px solid rgba(23,23,23,0.10);box-shadow:0 16px 44px rgba(0,0,0,0.14);overflow-y:auto;overflow-x:hidden;}
+/* Mobile dropdown menu */
+.mobile-menu{position:fixed;visibility:hidden;opacity:0;transform:translateY(-8px);transition:opacity 240ms ease,transform 240ms ease,visibility 240ms;z-index:130;background:#F8F6F1;border:1px solid rgba(23,23,23,0.10);box-shadow:0 16px 44px rgba(0,0,0,0.14);overflow-y:auto;overflow-x:hidden;}
 .header.menu-open .mobile-menu{visibility:visible;opacity:1;transform:none}
 .mobile-menu__inner{max-width:900px;margin:0 auto;padding:88px 28px 32px}
 .mobile-close{position:absolute;right:20px;top:18px;background:transparent;border:1px solid rgba(23,23,23,0.22);border-radius:8px;color:#171717;font-size:16px;font-weight:600;padding:8px 10px}
@@ -126,6 +126,9 @@ const { onToggle } = Astro.props as { onToggle?: () => void };
 }
 
 @media (max-width:899px){
+  .mobile-menu{top:96px;left:16px;right:16px;bottom:auto;width:auto;max-height:calc(100vh - 114px);border-radius:14px}
+  .mobile-menu__inner{padding:20px 18px 24px}
+  .mobile-nav{gap:4px;padding-top:48px}
   .mobile-toggle{color:#171717;background:rgba(255,255,255,0.78);border-color:rgba(23,23,23,0.18);font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
   .mobile-toggle:hover,.mobile-toggle:focus-visible{background:#FFFFFF;border-color:rgba(23,23,23,0.36)}
   .mobile-toggle[aria-expanded="true"]{background:#F8F6F1;color:#171717}
