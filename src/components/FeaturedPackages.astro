@@ -1,0 +1,73 @@
+---
+import { packages } from '../data/packages';
+
+const featuredSlugs = ['classic-japan', 'tokyo-kyoto-escape', 'golden-route-japan', 'japan-discovery'];
+const featuredPackages = featuredSlugs
+  .map((slug) => packages.find((pkg) => pkg.slug === slug))
+  .filter((pkg): pkg is (typeof packages)[number] => Boolean(pkg));
+
+const formatINR = (value: number) => `₹${new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(value)}`;
+---
+
+<section class="featured-packages" aria-labelledby="featured-packages-heading">
+  <div class="jj-container">
+    <header class="section-header">
+      <div class="eyebrow">CURATED JAPAN JOURNEYS</div>
+      <h2 id="featured-packages-heading">Choose your way to experience Japan.</h2>
+      <p>Four real package highlights for travelers who want to compare journeys without reading the full catalog.</p>
+    </header>
+
+    <div class="package-grid" aria-label="Featured Japan packages">
+      {featuredPackages.map((pkg) => (
+        <article class="package-card">
+          <div class="package-image-wrap">
+            <img src={pkg.image} alt={pkg.title} />
+          </div>
+          <div class="package-content">
+            <div class="package-meta">{pkg.destination} · {pkg.duration}</div>
+            <h3>{pkg.title}</h3>
+            <p>{pkg.short}</p>
+            <div class="package-price-wrap">
+              <span class="package-from">From</span>
+              <strong>{formatINR(pkg.priceFromINR)}</strong>
+            </div>
+            <a href={`/packages/${pkg.slug}/`} class="package-link">Explore Journey <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <a class="inline-link" href="/packages/">Explore All Japan Packages <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<style>
+.featured-packages{background:var(--jj-white);padding:clamp(76px,9vw,110px) 0}
+.section-header{max-width:720px;margin-bottom:30px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:0.15em;color:var(--jj-red);margin-bottom:12px}
+.section-header h2{margin:0;font-size:clamp(36px,4vw,60px);line-height:1.05;color:var(--jj-charcoal);font-weight:500}
+.section-header p{margin-top:14px;max-width:700px;font-size:17px;line-height:1.7;color:var(--jj-muted)}
+
+.package-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.package-card{background:var(--jj-white);border:1px solid rgba(23,23,23,0.08);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.package-image-wrap img{display:block;width:100%;aspect-ratio:4 / 3;object-fit:cover}
+.package-content{padding:16px 16px 18px;display:flex;flex-direction:column;flex:1}
+.package-meta{font-size:12px;color:var(--jj-muted);margin-bottom:8px}
+.package-content h3{margin:0;font-size:24px;line-height:1.2;color:var(--jj-charcoal);font-weight:500}
+.package-content p{margin-top:10px;font-size:15px;line-height:1.6;color:var(--jj-muted)}
+.package-price-wrap{display:flex;align-items:baseline;gap:8px;margin-top:auto;padding-top:14px}
+.package-from{font-size:13px;color:var(--jj-muted)}
+.package-price-wrap strong{font-size:22px;color:var(--jj-charcoal)}
+.package-link{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--jj-red);font-weight:600;text-decoration:none}
+.package-link span,.inline-link span{color:var(--jj-red)}
+.inline-link{display:inline-flex;align-items:center;gap:8px;margin-top:24px;color:var(--jj-red);font-weight:600;text-decoration:none}
+
+@media(max-width:1200px){
+  .package-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:640px){
+  .package-grid{grid-template-columns:1fr}
+  .featured-packages{padding:64px 0}
+}
+</style>

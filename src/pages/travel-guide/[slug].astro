@@ -1,0 +1,656 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { articles } from '../../data/articles';
+
+function formatUpdatedLabel(date) {
+  const parsed = new Date(`${date}T00:00:00Z`);
+  const month = new Intl.DateTimeFormat('en', { month: 'long' }).format(parsed);
+  const year = parsed.getUTCFullYear();
+  return `Updated ${month} ${year}`;
+}
+
+export function getStaticPaths() {
+  return articles.map((article) => ({ params: { slug: article.slug } }));
+}
+
+const { slug } = Astro.params;
+const article = articles.find((item) => item.slug === slug);
+
+if (!article) {
+  throw new Error('Article not found');
+}
+
+const sections = article.sections ?? [];
+const faqs = article.faq ?? [];
+const cta = article.cta ?? {
+  eyebrow: 'READY TO START PLANNING?',
+  heading: 'Your first Japan journey can be easier than you think.',
+  copy: 'Journey Japan can help shape a thoughtful itinerary around your interests, pace and travel requirements.',
+  primaryLabel: 'Explore Japan Packages',
+  secondaryLabel: 'Customise Your Trip'
+};
+const updatedLabel = article.updatedLabel ?? formatUpdatedLabel(article.date);
+const centeredHero =
+  article.slug === 'japan-travel-guide-for-first-time-visitors' || article.slug === 'japan-honeymoon-guide';
+const pageTitle = article.seoTitle
+  ? article.seoTitle
+  : article.slug === 'best-time-to-visit-japan'
+    ? 'Best Time to Visit Japan: A Complete Seasonal Guide | Journey Japan'
+    : `${article.title} | Journey Japan`;
+const pageDescription = article.metaDescription
+  ? article.metaDescription
+  : article.slug === 'best-time-to-visit-japan'
+    ? 'Discover the best time to visit Japan by season, region and travel style, with a practical comparison of spring, summer, autumn and winter.'
+    : 'Planning your first trip to Japan? Discover practical tips on transport, etiquette, food, money, connectivity and planning your Japan itinerary with Journey Japan.';
+const canonical = `/travel-guide/${article.slug}/`;
+---
+
+<Layout
+  title={pageTitle}
+  titleSuffix=""
+  description={pageDescription}
+  canonical={canonical}
+  image={article.image}
+>
+  <article class="guide-article">
+    <section class:list={['guide-hero', centeredHero && 'guide-hero--centered']}>
+      <img src={article.image} alt={article.title} class="guide-hero__image" />
+      <div class="guide-hero__overlay"></div>
+      <div class:list={['container', 'guide-hero__content', centeredHero && 'guide-hero__content--centered']}>
+        <p class="guide-hero__eyebrow">TRAVEL GUIDE</p>
+        <h1>{article.title}</h1>
+        <p class="guide-hero__meta">{updatedLabel} • {article.readingTime} read</p>
+        <p class="guide-hero__intro">
+          {article.heroIntro ?? article.intro ?? article.excerpt}
+        </p>
+      </div>
+    </section>
+
+    <div class="guide-article__body">
+      {sections.map((section, index) => (
+        <section class={`guide-section ${index % 2 === 1 ? 'guide-section--alt' : ''}`}>
+          <div class="container guide-section__inner">
+            <p class="guide-section__eyebrow">{section.eyebrow}</p>
+            <h2>{section.title}</h2>
+            {section.intro ? <p class="guide-section__intro">{section.intro}</p> : null}
+            {section.paragraphs?.map((paragraph) => <p>{paragraph}</p>)}
+
+            {section.subsections?.length ? (
+              <div class="guide-subsection-grid">
+                {section.subsections.map((subsection) => (
+                  <article class="guide-subsection-card">
+                    <h3>{subsection.title}</h3>
+                    {subsection.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+                  </article>
+                ))}
+              </div>
+            ) : null}
+
+            {section.table ? (
+              <div class="guide-table-wrap" role="region" aria-label={section.title} tabindex="0">
+                <table class="guide-table">
+                  <thead>
+                    <tr>
+                      {section.table.headers.map((header) => (
+                        <th>{header}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {section.table.rows.map((row) => (
+                      <tr>
+                        {row.map((cell, cellIndex) => (
+                          <td data-label={section.table.headers[cellIndex]}>{cell}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : null}
+
+            {section.bullets?.length ? (
+              <ul class={`guide-list ${section.checklist?.length ? 'guide-list--checklist' : ''}`}>
+                {section.bullets.map((item) => <li>{item}</li>)}
+              </ul>
+            ) : null}
+
+            {section.checklist?.length ? (
+              <ul class="guide-checklist">
+                {section.checklist.map((item) => (
+                  <li>
+                    <span aria-hidden="true">□</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+
+            {section.links?.length ? (
+              <div class="guide-inline-links">
+                {section.links.map((link) => (
+                  <a href={link.href} class="button button--ghost">
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            ) : null}
+
+            {section.note ? <p class="guide-note">{section.note}</p> : null}
+          </div>
+        </section>
+      ))}
+
+      <section class="guide-section guide-section--faq">
+        <div class="container guide-section__inner">
+          <p class="guide-section__eyebrow">FAQ</p>
+          <h2>Questions first-time visitors often ask.</h2>
+          <div class="guide-faq">
+            {faqs.map((item) => (
+              <details class="guide-faq__item">
+                <summary>{item.q}</summary>
+                <div class="guide-faq__answer">
+                  <p>{item.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="guide-cta-section">
+        <div class="container">
+          <div class="guide-cta-card">
+            <div>
+              <p class="guide-cta-card__eyebrow">{cta.eyebrow}</p>
+              <h2>{cta.heading}</h2>
+              <p>{cta.copy}</p>
+            </div>
+            <div class="guide-cta-card__actions">
+              <a class="button button--light" href="/packages/">{cta.primaryLabel}</a>
+              <a class="button button--outline button--outline-light" href="/customise-your-trip/">{cta.secondaryLabel}</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .guide-article {
+    background: #f8f6f1;
+    color: #242424;
+    overflow-x: clip;
+  }
+
+  .guide-hero {
+    position: relative;
+    min-height: clamp(640px, 78vh, 880px);
+    display: flex;
+    align-items: end;
+    overflow: hidden;
+  }
+
+  .guide-hero--centered {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .guide-hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .guide-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.12) 0%, rgba(10, 10, 10, 0.54) 55%, rgba(10, 10, 10, 0.84) 100%);
+  }
+
+  .guide-hero__content {
+    position: relative;
+    z-index: 1;
+    padding-top: 140px;
+    padding-bottom: 64px;
+    max-width: 900px;
+    color: #fff;
+  }
+
+  .guide-hero__content--centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 0;
+    width: min(850px, calc(100% - 40px));
+    max-width: 850px;
+    margin-inline: auto;
+  }
+
+  .guide-hero__content--centered .guide-hero__intro {
+    max-width: 740px;
+    margin-inline: auto;
+  }
+
+  .guide-hero__eyebrow,
+  .guide-section__eyebrow,
+  .guide-cta-card__eyebrow {
+    margin: 0 0 14px;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #f3dde1;
+  }
+
+  .guide-hero h1 {
+    margin: 0;
+    max-width: 820px;
+    font-size: clamp(42px, 5vw, 72px);
+    line-height: 1.04;
+    letter-spacing: -0.05em;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .guide-hero__meta {
+    margin: 16px 0 0;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .guide-hero__intro {
+    margin: 18px 0 0;
+    max-width: 760px;
+    font-size: clamp(17px, 1.6vw, 19px);
+    line-height: 1.72;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .guide-article__body {
+    background: #f8f6f1;
+  }
+
+  .guide-section {
+    padding: clamp(84px, 10vw, 140px) 0;
+    background: #fff;
+  }
+
+  .guide-section--alt {
+    background: #f8f6f1;
+  }
+
+  .guide-section__inner {
+    max-width: 920px;
+  }
+
+  .guide-section h2 {
+    margin: 0;
+    font-size: clamp(34px, 4vw, 54px);
+    line-height: 1.06;
+    letter-spacing: -0.05em;
+    font-weight: 500;
+    color: #171717;
+  }
+
+  .guide-section__intro,
+  .guide-section p,
+  .guide-faq__answer p,
+  .guide-cta-card p {
+    margin: 16px 0 0;
+    font-size: 17px;
+    line-height: 1.75;
+    color: #6f6f6f;
+  }
+
+  .guide-subsection-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 26px;
+  }
+
+  .guide-subsection-card {
+    background: #fff;
+    border: 1px solid rgba(23, 23, 23, 0.06);
+    border-radius: 22px;
+    padding: 28px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+  }
+
+  .guide-subsection-card h3 {
+    margin: 0;
+    color: #171717;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+
+  .guide-subsection-card p {
+    margin-top: 12px;
+  }
+
+  .guide-table-wrap {
+    margin-top: 28px;
+    overflow-x: auto;
+    border: 1px solid rgba(23, 23, 23, 0.08);
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
+  }
+
+  .guide-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+  }
+
+  .guide-table th,
+  .guide-table td {
+    padding: 18px 20px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid rgba(23, 23, 23, 0.08);
+    color: #242424;
+    line-height: 1.6;
+  }
+
+  .guide-table th {
+    background: #f5f1ea;
+    color: #171717;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .guide-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  @media (max-width: 767px) {
+    .guide-table-wrap {
+      overflow: visible;
+    }
+
+    .guide-table,
+    .guide-table thead,
+    .guide-table tbody,
+    .guide-table tr,
+    .guide-table th,
+    .guide-table td {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .guide-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .guide-table tr {
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(23, 23, 23, 0.08);
+    }
+
+    .guide-table td {
+      padding: 10px 0;
+      border: 0;
+      display: flex;
+      gap: 16px;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .guide-table td::before {
+      content: attr(data-label);
+      flex: 0 0 42%;
+      color: #171717;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+  }
+
+  .guide-list,
+  .guide-checklist {
+    margin: 22px 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 12px;
+  }
+
+  .guide-list li {
+    position: relative;
+    padding-left: 18px;
+    color: #242424;
+    line-height: 1.7;
+  }
+
+  .guide-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.82em;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: #b3262e;
+  }
+
+  .guide-checklist li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 16px 18px;
+    border-radius: 16px;
+    border: 1px solid rgba(23, 23, 23, 0.08);
+    background: rgba(255, 255, 255, 0.82);
+    color: #242424;
+    line-height: 1.6;
+  }
+
+  .guide-checklist span:first-child {
+    color: #b3262e;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+
+  .guide-note {
+    margin-top: 22px;
+    padding: 18px 20px;
+    border-left: 3px solid #b3262e;
+    background: rgba(179, 38, 46, 0.06);
+    color: #242424;
+    border-radius: 0 16px 16px 0;
+  }
+
+  .guide-inline-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 22px;
+  }
+
+  .button {
+    min-height: 52px;
+    padding: 0 24px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 220ms ease, background 220ms ease, border-color 220ms ease, color 220ms ease;
+  }
+
+  .button:hover,
+  .button:focus-visible {
+    transform: translateY(-2px);
+  }
+
+  .button--light {
+    background: #fff;
+    color: #171717;
+  }
+
+  .button--light:hover,
+  .button--light:focus-visible {
+    background: #b3262e;
+    color: #fff;
+  }
+
+  .button--outline {
+    background: transparent;
+    border: 1px solid rgba(23, 23, 23, 0.14);
+    color: #171717;
+  }
+
+  .button--outline-light {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #fff;
+  }
+
+  .button--outline-light:hover,
+  .button--outline-light:focus-visible {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+  }
+
+  .guide-faq {
+    display: grid;
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .guide-faq__item {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(23, 23, 23, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .guide-faq__item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 20px;
+    color: #171717;
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  .guide-faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .guide-faq__answer {
+    padding: 0 20px 20px;
+    border-top: 1px solid rgba(23, 23, 23, 0.08);
+  }
+
+  .guide-cta-section {
+    padding: clamp(90px, 11vw, 150px) 0;
+    background: #f8f6f1;
+  }
+
+  .guide-cta-card {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: clamp(42px, 5vw, 84px);
+    border-radius: 24px;
+    background: #171717;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .guide-cta-card h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(34px, 4vw, 54px);
+    line-height: 1.05;
+    letter-spacing: -0.05em;
+    font-weight: 500;
+    max-width: 620px;
+  }
+
+  .guide-cta-card__eyebrow {
+    color: #f3dde1;
+  }
+
+  .guide-cta-card p {
+    color: rgba(255, 255, 255, 0.78);
+    max-width: 640px;
+  }
+
+  .guide-cta-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: 900px) {
+    .guide-subsection-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .guide-cta-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .guide-hero {
+      min-height: 70vh;
+    }
+
+    .guide-hero--centered {
+      justify-content: center;
+    }
+
+    .guide-hero__content {
+      padding-top: 118px;
+      padding-bottom: 54px;
+    }
+
+    .guide-hero__content--centered {
+      padding-top: 0;
+      padding-bottom: 0;
+      width: calc(100% - 40px);
+    }
+
+    .button {
+      width: 100%;
+    }
+
+    .guide-cta-card {
+      padding: 40px 24px;
+    }
+
+    .guide-cta-card__actions {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+</style>

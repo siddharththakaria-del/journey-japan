@@ -1,0 +1,166 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Customise Your Trip | Journey Japan">
+  <section class="section">
+    <div class="container">
+      <h1 class="h2">Custom Trip Builder</h1>
+      <p class="lead">A visual multi-step planner to help us understand your ideal trip.</p>
+
+      <form id="trip-form" style="margin-top:18px;max-width:900px">
+        <div id="steps" style="display:grid;gap:12px">
+          <!-- Step 1 -->
+          <fieldset data-step="1">
+            <legend><strong>Who are you travelling with?</strong></legend>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+              <label><input type="radio" name="company" value="Solo" required/> Solo</label>
+              <label><input type="radio" name="company" value="Couple"/> Couple</label>
+              <label><input type="radio" name="company" value="Family"/> Family</label>
+              <label><input type="radio" name="company" value="Friends"/> Friends</label>
+              <label><input type="radio" name="company" value="Group"/> Group</label>
+              <label><input type="radio" name="company" value="Corporate"/> Corporate</label>
+            </div>
+          </fieldset>
+
+          <!-- Step 2 -->
+          <fieldset data-step="2" hidden>
+            <legend><strong>How long?</strong></legend>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+              <label><input type="radio" name="length" value="5"/> 5 days</label>
+              <label><input type="radio" name="length" value="7"/> 7 days</label>
+              <label><input type="radio" name="length" value="10"/> 10 days</label>
+              <label><input type="radio" name="length" value="14"/> 14 days</label>
+              <label><input type="radio" name="length" value="21"/> 21+ days</label>
+            </div>
+          </fieldset>
+
+          <!-- Step 3 -->
+          <fieldset data-step="3" hidden>
+            <legend><strong>What interests you?</strong></legend>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px">
+              <label><input type="checkbox" name="interests" value="Culture"/> Culture</label>
+              <label><input type="checkbox" name="interests" value="Food"/> Food</label>
+              <label><input type="checkbox" name="interests" value="Nature"/> Nature</label>
+              <label><input type="checkbox" name="interests" value="Adventure"/> Adventure</label>
+              <label><input type="checkbox" name="interests" value="Shopping"/> Shopping</label>
+              <label><input type="checkbox" name="interests" value="Anime"/> Anime & Pop Culture</label>
+              <label><input type="checkbox" name="interests" value="Luxury"/> Luxury</label>
+              <label><input type="checkbox" name="interests" value="Photography"/> Photography</label>
+            </div>
+          </fieldset>
+
+          <!-- Step 4 Destinations -->
+          <fieldset data-step="4" hidden>
+            <legend><strong>Destinations</strong></legend>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+              <label><input type="checkbox" name="dests" value="Tokyo"/> Tokyo</label>
+              <label><input type="checkbox" name="dests" value="Kyoto"/> Kyoto</label>
+              <label><input type="checkbox" name="dests" value="Osaka"/> Osaka</label>
+              <label><input type="checkbox" name="dests" value="Nara"/> Nara</label>
+              <label><input type="checkbox" name="dests" value="Hakone"/> Hakone</label>
+              <label><input type="checkbox" name="dests" value="Mount Fuji"/> Mount Fuji</label>
+              <label><input type="checkbox" name="dests" value="Hiroshima"/> Hiroshima</label>
+              <label><input type="checkbox" name="dests" value="Okinawa"/> Okinawa</label>
+            </div>
+          </fieldset>
+
+          <!-- Step 5 Travel style & Food -->
+          <fieldset data-step="5" hidden>
+            <legend><strong>Travel style & Food preference</strong></legend>
+            <div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap">
+              <div>
+                <label class="small">Travel style</label>
+                <select name="style" style="padding:8px;margin-top:6px">
+                  <option value="Budget">Budget</option>
+                  <option value="Comfort">Comfort</option>
+                  <option value="Premium">Premium</option>
+                  <option value="Luxury">Luxury</option>
+                </select>
+              </div>
+              <div>
+                <label class="small">Food preference</label>
+                <select name="food" style="padding:8px;margin-top:6px">
+                  <option value="Vegetarian">Vegetarian</option>
+                  <option value="Jain">Jain</option>
+                  <option value="Non-vegetarian">Non-vegetarian</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Step 6 Traveler details -->
+          <fieldset data-step="6" hidden>
+            <legend><strong>Your details</strong></legend>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
+              <input name="name" placeholder="Full name" required style="padding:10px" />
+              <input name="email" type="email" placeholder="Email" required style="padding:10px" />
+              <input name="phone" placeholder="WhatsApp / Phone" style="padding:10px" />
+              <input name="country" placeholder="Country" style="padding:10px" />
+              <input name="dates" placeholder="Travel dates (approx)" style="padding:10px" />
+              <input name="budget" placeholder="Budget (INR)" style="padding:10px" />
+            </div>
+            <div style="margin-top:12px">
+              <textarea name="notes" placeholder="Additional requirements" style="width:100%;min-height:120px;padding:12px"></textarea>
+            </div>
+          </fieldset>
+
+          <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:12px">
+            <button type="button" id="prev" class="button button--ghost" disabled>Back</button>
+            <button type="button" id="next" class="button">Next</button>
+            <button type="submit" id="submit" class="button" style="display:none">Create My Journey</button>
+          </div>
+        </div>
+
+        <div id="confirmation" hidden style="margin-top:18px;padding:18px;border-radius:12px;background:var(--color-surface)">
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+  (() => {
+    const form = document.getElementById('trip-form');
+    const steps = Array.from(form.querySelectorAll('fieldset'));
+    let index = 0;
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const submit = document.getElementById('submit');
+    const confirmation = document.getElementById('confirmation');
+
+    function show(i){
+      steps.forEach((s, idx)=> s.hidden = idx !== i);
+      prev.disabled = i === 0;
+      next.style.display = i === steps.length -1 ? 'none' : '';
+      submit.style.display = i === steps.length -1 ? '' : 'none';
+    }
+    show(index);
+
+    prev.addEventListener('click',()=>{ index = Math.max(0, index-1); show(index); });
+    next.addEventListener('click',()=>{
+      // basic validation: current step required fields
+      const current = steps[index];
+      const required = Array.from(current.querySelectorAll('[required]'));
+      for(const r of required){ if(!r.value){ r.focus(); return; } }
+      index = Math.min(steps.length-1, index+1); show(index);
+    });
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const fd = new FormData(form);
+      const data = Object.fromEntries(fd.entries());
+      // simulate submission
+      confirmation.hidden = false;
+      confirmation.innerHTML = `<h3>Journey request received</h3><p class="small">Thank you, ${data.name || 'traveller'}. A member of our team will contact you shortly to create your personalised journey.</p>`;
+      form.reset();
+      steps.forEach(s=>s.hidden=true);
+      prev.disabled = true; next.style.display='none'; submit.style.display='none';
+    });
+  })();
+  </script>
+
+  <style>
+  fieldset{border:none;padding:0}
+  </style>
+</Layout>
+</style>

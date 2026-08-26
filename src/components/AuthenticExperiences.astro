@@ -1,0 +1,81 @@
+---
+const experiences = [
+  {
+    title: 'Culture & Craft',
+    text: 'Traditional arts, craftsmanship and cultural experiences.',
+    image: '/images/experiences/japanese-culture.webp'
+  },
+  {
+    title: 'Japanese Food',
+    text: 'Regional flavours, seasonal cuisine and memorable dining.',
+    image: '/images/food/japan-vegetarian-food.webp'
+  },
+  {
+    title: 'Nature & Landscapes',
+    text: 'Mountains, gardens, countryside and coastlines.',
+    image: '/images/experiences/japan-nature.webp'
+  },
+  {
+    title: 'Local Neighbourhoods',
+    text: 'Everyday Japan beyond the major tourist sights.',
+    image: '/images/experiences/authentic-japan.webp'
+  },
+  {
+    title: 'Seasonal Experiences',
+    text: 'Discover how Japan changes through spring, summer, autumn and winter.',
+    image: '/images/experiences/japan-night.webp'
+  }
+];
+---
+
+<section class="authentic-experiences" aria-labelledby="authentic-experiences-heading">
+  <div class="jj-container">
+    <header class="section-header">
+      <div class="eyebrow">EXPERIENCE JAPAN</div>
+      <h2 id="authentic-experiences-heading">Experience Japan beyond the obvious.</h2>
+      <p>Five compact visual cards that show the kinds of journeys Journey Japan is built around.</p>
+    </header>
+
+    <div class="story-grid" aria-label="Japan experiences">
+      {experiences.map((experience) => (
+        <article class="story">
+          <div class="story-media">
+            <img src={experience.image} alt={experience.title} />
+          </div>
+          <div class="story-copy">
+            <h3>{experience.title}</h3>
+            <p>{experience.text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <a class="story-link" href="/why-japan/">Explore Why Japan <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<style>
+.authentic-experiences{background:var(--jj-white);padding:clamp(76px,9vw,110px) 0}
+.section-header{max-width:720px;margin-bottom:30px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:0.12em;color:var(--jj-red);margin-bottom:12px}
+.section-header h2{font-size:clamp(36px,4vw,60px);line-height:1.05;margin:0;color:var(--jj-charcoal);font-weight:500}
+.section-header p{max-width:660px;margin-top:14px;font-size:17px;line-height:1.7;color:var(--jj-muted)}
+
+.story-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.story{overflow:hidden;border-radius:18px;background:var(--jj-white);border:1px solid rgba(23,23,23,0.06)}
+.story-media img{display:block;width:100%;aspect-ratio:4 / 3;object-fit:cover}
+.story-copy{padding:16px 16px 18px}
+.story-copy h3{margin:0 0 8px;font-size:24px;line-height:1.2;color:var(--jj-charcoal);font-weight:500}
+.story-copy p{margin:0;font-size:15px;line-height:1.6;color:var(--jj-muted)}
+.story-link{display:inline-flex;align-items:center;gap:8px;margin-top:26px;color:var(--jj-red);font-weight:600;text-decoration:none}
+.story-link span{color:var(--jj-red)}
+
+@media(max-width:900px){
+  .story-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:640px){
+  .story-grid{grid-template-columns:1fr}
+  .authentic-experiences{padding:64px 0}
+}
+</style>

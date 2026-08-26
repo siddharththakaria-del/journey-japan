@@ -1,0 +1,85 @@
+---
+const journeyCards = [
+  {
+    title: 'Slow',
+    text: 'Quiet mornings, gardens, traditional neighbourhoods and time to simply experience Japan.',
+    image: '/images/experiences/japan-nature.webp'
+  },
+  {
+    title: 'Curious',
+    text: 'Food, craft, culture and local experiences that reveal another side of the country.',
+    image: '/images/experiences/japanese-culture.webp'
+  },
+  {
+    title: 'Celebratory',
+    text: 'Honeymoons, special occasions, beautiful stays and memorable experiences.',
+    image: '/images/packages/luxury-honeymoon.webp'
+  },
+  {
+    title: 'Adventurous',
+    text: 'Scenic rail journeys, mountain landscapes, countryside and experiences beyond the cities.',
+    image: '/images/experiences/shinkansen.webp'
+  }
+];
+---
+
+<section class="customise-journey" aria-labelledby="customise-journey-heading">
+  <div class="jj-container">
+    <div class="section-head">
+      <div class="eyebrow">TRAVEL YOUR WAY</div>
+      <h2 id="customise-journey-heading">Japan shaped around the way you travel.</h2>
+      <p>Some travelers want slow mornings and traditional neighbourhoods. Others want food, culture, landscapes or adventure. Your Japan journey can bring those interests together at your own pace.</p>
+    </div>
+
+    <div class="journey-grid">
+      {journeyCards.map((card) => (
+        <article class="journey-card">
+          <img src={card.image} alt={card.title} />
+          <div class="journey-copy">
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="journey-foot">
+      <p>One journey can bring them all together.</p>
+      <div class="journey-actions">
+        <a class="primary-cta" href="/customise-your-trip/">Create My Journey <span aria-hidden="true">→</span></a>
+        <a class="secondary-cta" href="/packages/">Explore Packages <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.customise-journey{background:var(--jj-charcoal);padding:clamp(76px,9vw,110px) 0;color:var(--jj-white)}
+.section-head{max-width:760px;margin-bottom:28px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:0.15em;color:var(--jj-sakura);margin-bottom:12px}
+.section-head h2{margin:0;font-size:clamp(38px,4vw,68px);line-height:1.04;color:var(--jj-white);font-weight:500}
+.section-head p{margin-top:14px;max-width:720px;font-size:17px;line-height:1.7;color:rgba(255,255,255,0.76)}
+
+.journey-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.journey-card{overflow:hidden;border-radius:22px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14)}
+.journey-card img{display:block;width:100%;aspect-ratio:16 / 10;object-fit:cover}
+.journey-copy{padding:18px 18px 20px}
+.journey-copy h3{margin:0 0 8px;color:var(--jj-white);font-size:24px;line-height:1.2;font-weight:500}
+.journey-copy p{margin:0;color:rgba(255,255,255,0.76);font-size:15px;line-height:1.6}
+
+.journey-foot{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-top:26px;flex-wrap:wrap}
+.journey-foot p{margin:0;color:rgba(255,255,255,0.86);font-size:18px;line-height:1.5}
+.journey-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.primary-cta{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 24px;border-radius:12px;background:var(--jj-white);color:var(--jj-charcoal);font-size:15px;font-weight:600;text-decoration:none;transition:background 300ms ease,color 300ms ease,transform 300ms ease}
+.primary-cta:hover{background:var(--jj-red);color:var(--jj-white);transform:translateY(-2px)}
+.secondary-cta{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,0.76);text-decoration:none;font-weight:600}
+.secondary-cta span{color:var(--jj-sakura)}
+
+@media(max-width:900px){
+  .journey-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:640px){
+  .journey-foot{flex-direction:column;align-items:flex-start}
+}
+</style>

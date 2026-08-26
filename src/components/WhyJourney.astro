@@ -1,0 +1,65 @@
+---
+const reasons = [
+  {
+    number: '01',
+    title: '30+ Years of Japan',
+    text: 'Deep experience understanding Japan, its regions, seasons and travel rhythms.'
+  },
+  {
+    number: '02',
+    title: 'Local Knowledge',
+    text: 'Thoughtful routing, carefully selected places and an understanding of what makes each journey feel authentic.'
+  },
+  {
+    number: '03',
+    title: 'Thoughtful Planning',
+    text: 'Every detail is considered so travelers can enjoy Japan with confidence.'
+  }
+];
+---
+
+<section class="why-journey" aria-labelledby="wj-heading">
+  <div class="jj-container">
+    <div class="wj-header">
+      <div class="eyebrow eyebrow--accent">THE JOURNEY JAPAN DIFFERENCE</div>
+      <h2 id="wj-heading" class="wj-title">Why Journey Japan?</h2>
+      <p class="wj-lead">A short summary of the experience and planning mindset that shapes the Journey Japan approach.</p>
+    </div>
+
+    <div class="wj-grid">
+      {reasons.map((reason) => (
+        <article class="wj-col">
+          <div class="wj-num">{reason.number}</div>
+          <h3 class="wj-col-title">{reason.title}</h3>
+          <p class="wj-desc">{reason.text}</p>
+        </article>
+      ))}
+    </div>
+
+    <a class="wj-cta" href="/why-japan/">Discover Our Approach <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<style>
+.why-journey{background:var(--jj-cream);padding:clamp(76px,9vw,110px) 0}
+.wj-header{max-width:680px;margin-bottom:28px}
+.eyebrow--accent{font-size:13px;font-weight:600;letter-spacing:0.15em;color:var(--jj-red);margin-bottom:12px}
+.wj-title{font-size:clamp(36px,4.5vw,60px);color:var(--jj-charcoal);margin:0}
+.wj-lead{font-size:17px;color:var(--jj-muted);line-height:1.6;margin-top:14px;max-width:680px}
+
+.wj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+.wj-col{padding:22px 20px 20px;border-radius:18px;border:1px solid rgba(23,23,23,0.08);background:rgba(255,255,255,0.72)}
+.wj-num{font-size:13px;color:var(--jj-red);font-weight:600;letter-spacing:0.12em;margin-bottom:10px}
+.wj-col-title{font-size:26px;color:var(--jj-charcoal);font-weight:600;margin:0 0 8px}
+.wj-desc{font-size:16px;color:var(--jj-muted);line-height:1.65}
+.wj-cta{display:inline-flex;align-items:center;gap:8px;margin-top:28px;color:var(--jj-red);font-weight:600;text-decoration:none}
+.wj-cta span{color:var(--jj-red)}
+
+@media(max-width:900px){
+  .wj-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:640px){
+  .wj-grid{grid-template-columns:1fr}
+}
+</style>

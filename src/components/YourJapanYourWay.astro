@@ -1,0 +1,115 @@
+---
+const travelTypes = [
+  { id: 'couples', label: 'Couples', description: 'Slow mornings, memorable experiences and time to discover Japan together.', image: '/images/destinations/tokyo.webp', active: true },
+  { id: 'honeymoon', label: 'Honeymoon', description: 'Romantic stays, private experiences and carefully planned moments.', image: '/images/packages/japan-honeymoon.webp' },
+  { id: 'family', label: 'Family', description: 'Comfortable, flexible journeys designed around the whole family.', image: '/images/packages/japan-family.webp' },
+  { id: 'group', label: 'Group', description: 'Thoughtfully coordinated Japan travel for friends and larger groups.', image: '/images/destinations/kyoto.webp' },
+  { id: 'luxury', label: 'Luxury', description: 'Exceptional stays, private experiences and a more refined way to travel.', image: '/images/packages/japan-honeymoon.webp' },
+  { id: 'corporate', label: 'Corporate', description: 'Seamless travel planning for business trips, incentives and corporate groups.', image: '/images/destinations/tokyo.webp' },
+  { id: 'solo', label: 'Solo', description: 'Freedom to explore Japan with a journey designed around your interests.', image: '/images/destinations/mount-fuji.webp' }
+];
+---
+
+<section class="jj-section your-japan-your-way" aria-labelledby="yjyw-heading">
+  <div class="jj-container">
+    <header class="section-header">
+      <div class="eyebrow">TRAVEL YOUR WAY</div>
+      <h2 id="yjyw-heading">Your Japan. Your way.</h2>
+      <p>Whether you're planning a honeymoon, family holiday, private escape or luxury journey, we shape Japan around you.</p>
+    </header>
+
+    <div class="travel-layout">
+      <div class="travel-selector" aria-label="Travel types selector">
+        {travelTypes.map((type) => (
+          <button type="button" class={`travel-item ${type.active ? 'is-active' : ''}`} data-target={type.id} data-image={type.image} data-copy={type.description}>
+            <span class="travel-dot" aria-hidden="true"></span>
+            <span>{type.label}</span>
+          </button>
+        ))}
+      </div>
+
+      <div class="travel-visual">
+        <img src="/images/destinations/tokyo.webp" alt="Japan travel type preview" class="travel-image" />
+        <div class="travel-copy">
+          <p class="travel-description">Slow mornings, memorable experiences and time to discover Japan together.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="travel-actions">
+      <a class="primary-cta" href="/customise-your-trip/">Create My Journey</a>
+      <a class="secondary-cta" href="/packages/">Explore Japan Packages <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<style>
+.your-japan-your-way{position:relative;background:var(--jj-charcoal);padding:clamp(120px,14vw,190px) 0;color:var(--jj-white)}
+.section-header{max-width:700px;margin-bottom:26px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:0.15em;color:var(--jj-sakura);margin-bottom:12px}
+.section-header h2{margin:0;font-size:clamp(42px,4vw,72px);line-height:1.04;color:var(--jj-white);font-weight:500}
+.section-header p{margin-top:16px;max-width:700px;font-size:17px;line-height:1.7;color:rgba(255,255,255,0.72)}
+
+.travel-layout{display:grid;grid-template-columns:0.85fr 1.15fr;gap:26px;align-items:stretch;margin-top:20px}
+.travel-selector{display:flex;flex-direction:column;gap:12px}
+.travel-item{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:rgba(255,255,255,0.38);text-align:left;border-radius:12px;cursor:pointer;transition:all 240ms ease}
+.travel-item.is-active{background:rgba(255,255,255,0.06);color:var(--jj-white);border-color:rgba(255,255,255,0.18)}
+.travel-item:hover{color:var(--jj-white)}
+.travel-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--jj-red);opacity:0;transition:opacity 200ms ease}
+.travel-item.is-active .travel-dot{opacity:1}
+.travel-item span:last-child{font-size:18px;line-height:1.2}
+
+.travel-visual{position:relative;overflow:hidden;border-radius:18px;min-height:420px;background:#252525;border:1px solid rgba(255,255,255,0.08)}
+.travel-visual img{display:block;width:100%;height:100%;object-fit:cover;transition:opacity 600ms ease, transform 600ms ease}
+.travel-visual:hover img{transform:scale(1.02)}
+.travel-copy{position:absolute;left:0;right:0;bottom:0;padding:24px 22px 18px;background:linear-gradient(180deg, rgba(17,17,17,0.10), rgba(17,17,17,0.82));}
+.travel-description{margin:0;font-size:18px;line-height:1.6;color:rgba(255,255,255,0.84)}
+
+.travel-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:32px}
+.primary-cta{display:inline-flex;align-items:center;justify-content:center;height:54px;padding:0 28px;border-radius:12px;background:var(--jj-white);color:var(--jj-charcoal);font-size:15px;font-weight:600;text-decoration:none;transition:background 300ms ease,color 300ms ease,transform 300ms ease}
+.primary-cta:hover{background:var(--jj-red);color:var(--jj-white);transform:translateY(-2px)}
+.secondary-cta{color:rgba(255,255,255,0.72);text-decoration:none;transition:color 200ms ease}
+.secondary-cta:hover{color:var(--jj-white)}
+.secondary-cta span{color:var(--jj-sakura)}
+
+@media (max-width:900px){
+  .travel-layout{grid-template-columns:1fr}
+  .travel-selector{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+
+@media (max-width:620px){
+  .travel-selector{grid-template-columns:1fr}
+  .travel-actions{flex-direction:column;align-items:flex-start}
+}
+</style>
+
+<script type="module">
+  const buttons = document.querySelectorAll('.travel-item');
+  const image = document.querySelector('.travel-image');
+  const descriptionNode = document.querySelector('.travel-description');
+  const dataMap = {
+    couples: { image: '/images/destinations/tokyo.webp', description: 'Slow mornings, memorable experiences and time to discover Japan together.' },
+    honeymoon: { image: '/images/packages/japan-honeymoon.webp', description: 'Romantic stays, private experiences and carefully planned moments.' },
+    family: { image: '/images/packages/japan-family.webp', description: 'Comfortable, flexible journeys designed around the whole family.' },
+    group: { image: '/images/destinations/kyoto.webp', description: 'Thoughtfully coordinated Japan travel for friends and larger groups.' },
+    luxury: { image: '/images/packages/japan-honeymoon.webp', description: 'Exceptional stays, private experiences and a more refined way to travel.' },
+    corporate: { image: '/images/destinations/tokyo.webp', description: 'Seamless travel planning for business trips, incentives and corporate groups.' },
+    solo: { image: '/images/destinations/mount-fuji.webp', description: 'Freedom to explore Japan with a journey designed around your interests.' }
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      buttons.forEach((btn) => btn.classList.toggle('is-active', btn === button));
+      const key = button.getAttribute('data-target');
+      const next = dataMap[key];
+      if (!next || !image || !descriptionNode) return;
+      image.style.opacity = '0.25';
+      setTimeout(() => {
+        image.src = next.image;
+        image.alt = `${button.textContent.trim()} travel preview`;
+        descriptionNode.textContent = next.description;
+        image.style.opacity = '1';
+      }, 180);
+    });
+  });
+</script>

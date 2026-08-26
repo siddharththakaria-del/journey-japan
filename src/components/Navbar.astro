@@ -1,0 +1,140 @@
+---
+import WhatsAppButton from './WhatsAppButton.astro';
+const { onToggle } = Astro.props as { onToggle?: () => void };
+---
+<header class="header" role="banner">
+  <div class="nav__bar">
+    <div class="nav__inner">
+      <a class="nav__logo" href="/" aria-label="Journey Japan">
+        <img src="/images/logo/jj_logo.webp" alt="Journey Japan" />
+      </a>
+
+      <nav class="nav__links" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/packages/">Packages</a>
+        <a href="/customise-your-trip/">Customise Your Trip</a>
+        <a href="/why-japan/">Why Japan</a>
+        <a href="/travel-guide/">Travel Guide</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+
+      <div class="nav__actions">
+        <a class="button button--primary" href="/customise-your-trip/">Plan My Journey</a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu__inner">
+      <button class="mobile-close" aria-label="Close menu">Close</button>
+      <nav class="mobile-nav" aria-label="Mobile primary">
+        <a href="/">Home</a>
+        <a href="/packages/">Packages</a>
+        <a href="/customise-your-trip/">Customise Your Trip</a>
+        <a href="/why-japan/">Why Japan</a>
+        <a href="/travel-guide/">Travel Guide</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+      <div class="mobile-cta">
+        <a class="button button--primary" href="/customise-your-trip/">Plan My Journey</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+/* Structural container for navbar — centered with generous max width */
+.nav__bar{width:100%;display:flex;align-items:center}
+.nav__inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:10px 18px;width:100%}
+
+/* Logo */
+.nav__logo{display:flex;align-items:center;line-height:0}
+.nav__logo img{height:56px;width:auto;display:block}
+
+/* Centered links */
+.nav__links{display:flex;gap:22px;align-items:center;justify-content:center;flex:1;min-width:0}
+.nav__links a{color:#171717;padding:8px 6px;font-size:14px;font-weight:500;line-height:1;display:flex;align-items:center;transition:color 220ms ease}
+.nav__links a:hover,.nav__links a:focus-visible{color:#B3262E}
+
+/* Actions on the right */
+.nav__actions{display:flex;align-items:center;gap:12px;justify-content:flex-end;flex:0 0 auto}
+.button--primary{background:#B3262E;color:#FFFFFF;border-radius:10px;padding:10px 16px;line-height:1;display:inline-flex;align-items:center;transition:background 220ms ease,color 220ms ease}
+.button--primary:hover,.button--primary:focus-visible{background:#8F2028;color:#FFFFFF}
+.button--ghost{background:transparent;border:1px solid rgba(255,255,255,0.12);color:var(--color-cream);padding:8px 12px}
+
+/* Header floating glass style */
+.header{position:fixed;top:20px;left:50%;transform:translateX(-50%);width:min(1380px,calc(100% - 40px));height:70px;border-radius:18px;z-index:120;display:flex;align-items:center;padding:4px 6px;transition:background var(--jj-transition),backdrop-filter var(--jj-transition),box-shadow var(--jj-transition),transform var(--jj-transition);}
+.header .nav__inner{height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+
+/* Liquid glass look (default) */
+.header{background:rgba(255,255,255,0.72);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);border:1px solid rgba(255,255,255,0.55);box-shadow:0 12px 40px rgba(0,0,0,0.08)}
+
+/* Default (top) link colors — subtle and light to sit over hero */
+.header .nav__links a{color:#171717;transition:color 220ms}
+.header .button--ghost{border-color:var(--jj-white-border);color:var(--jj-white)}
+
+/* Scrolled state — stronger, darker text */
+.header.scrolled{background:rgba(248,246,241,0.90);backdrop-filter:blur(28px) saturate(150%);-webkit-backdrop-filter:blur(28px) saturate(150%);}
+.header.scrolled .nav__links a{color:#171717}
+.header.scrolled .button--ghost{border-color:var(--jj-border);color:var(--jj-text)}
+
+/* keep logo crisp */
+.nav__logo img{display:block;height:56px;width:auto}
+.header.scrolled .nav__logo img{height:52px}
+
+/* Mobile adjustments */
+@media (max-width:899px){
+  .header{left:16px;right:16px;width:calc(100% - 32px);transform:none;top:18px}
+  .nav__inner{justify-content:space-between;gap:12px;padding:0 14px}
+  .nav__links{display:none}
+  .nav__actions{display:none}
+  .mobile-toggle{display:inline-flex;justify-self:end}
+  .nav__logo img{height:40px}
+}
+
+/* Mobile styles */
+.mobile-toggle{background:transparent;border:1px solid transparent;color:var(--color-cream);padding:8px 10px;border-radius:8px}
+.mobile-toggle[aria-expanded="true"]{opacity:0.9}
+
+@media (max-width:899px){
+  .nav__inner{justify-content:space-between}
+  .nav__links{display:none}
+  .nav__actions{display:none}
+  .mobile-toggle{display:inline-flex;justify-self:end}
+  .nav__logo img{height:40px}
+}
+
+/* Mobile full screen menu */
+.mobile-menu{position:fixed;inset:0;visibility:hidden;opacity:0;transform:translateY(6%);transition:opacity 240ms,transform 240ms,visibility 240ms;z-index:90;background:rgba(248,246,241,0.98);backdrop-filter:blur(6px);}
+.header.menu-open .mobile-menu{visibility:visible;opacity:1;transform:none}
+.mobile-menu__inner{max-width:900px;margin:72px auto;padding:28px}
+.mobile-close{position:absolute;right:20px;top:18px;background:transparent;border:0;font-size:16px}
+.mobile-nav{display:flex;flex-direction:column;gap:18px;padding-top:18px}
+.mobile-nav a{font-size:20px;padding:12px 8px;color:var(--color-charcoal);font-weight:700}
+.mobile-cta{margin-top:18px}
+
+/* Small accessibility tweaks */
+.mobile-menu a:focus,.nav__links a:focus{outline:3px solid rgba(179,38,46,0.12);outline-offset:4px}
+
+@media (min-width:1024px){
+  .mobile-toggle{display:none !important}
+}
+
+</style>
+
+<script type="module">
+const header = document.querySelector('.header');
+const toggle = document.querySelector('.mobile-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileClose = document.querySelector('.mobile-close');
+function checkScroll(){ if(window.scrollY > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled'); }
+checkScroll(); window.addEventListener('scroll', checkScroll, {passive:true});
+if(toggle){ toggle.addEventListener('click', ()=>{ const open = header.classList.toggle('menu-open'); toggle.setAttribute('aria-expanded', open? 'true' : 'false'); if(mobileMenu) mobileMenu.setAttribute('aria-hidden', open? 'false' : 'true'); }); }
+if(mobileClose){ mobileClose.addEventListener('click', ()=>{ header.classList.remove('menu-open'); toggle.setAttribute('aria-expanded','false'); if(mobileMenu) mobileMenu.setAttribute('aria-hidden','true'); }); }
+// close when clicking a link
+document.querySelectorAll('.mobile-nav a').forEach(a=> a.addEventListener('click', ()=>{ header.classList.remove('menu-open'); if(toggle) toggle.setAttribute('aria-expanded','false'); if(mobileMenu) mobileMenu.setAttribute('aria-hidden','true'); }));
+</script>

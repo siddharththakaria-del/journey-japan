@@ -1,0 +1,40 @@
+---
+const { title, description, canonical, image } = Astro.props as {
+  title: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  titleSuffix?: string;
+};
+const site = 'https://journey-japan.org';
+const separator = String.fromCharCode(183);
+const titleSuffix = Astro.props.titleSuffix;
+const metaTitle = title
+  ? (titleSuffix === '' ? title : `${title} ${separator} ${titleSuffix ?? 'Journey Japan'}`)
+  : 'Journey Japan';
+const metaDesc = description ?? 'Discover Japan beyond the ordinary path. Authentic, thoughtfully curated Japan travel experiences.';
+const url = canonical ?? site + Astro.url.pathname;
+const ogImage = image ?? '/images/hero/japan-hero.webp';
+---
+<!-- PageMeta: injects meta tags into the document head -->
+<meta charset="UTF-8" />
+<title>{metaTitle}</title>
+<meta name="description" content={metaDesc} />
+<link rel="canonical" href={url} />
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Journey Japan" />
+<meta property="og:title" content={metaTitle} />
+<meta property="og:description" content={metaDesc} />
+<meta property="og:url" content={url} />
+<meta property="og:type" content="website" />
+<meta property="og:image" content={site + ogImage} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={metaTitle} />
+<meta name="twitter:description" content={metaDesc} />
+<meta name="twitter:image" content={site + ogImage} />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="/images/logo/jj_logo.webp" />

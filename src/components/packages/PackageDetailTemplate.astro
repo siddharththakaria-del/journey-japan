@@ -1,0 +1,572 @@
+---
+import type { Package } from '../../data/packages';
+import { packageDetailContent } from '../../data/package-detail-content';
+
+const { pkg } = Astro.props as { pkg: Package };
+const separator = String.fromCharCode(183);
+const detail = packageDetailContent[pkg.slug];
+
+const heroTitle = pkg.heroTitle ?? pkg.title;
+const heroEyebrow = pkg.heroEyebrow ?? pkg.title.toUpperCase();
+const heroDescription = detail?.heroDescription ?? pkg.heroDescription ?? pkg.description;
+
+const briefSections = detail?.briefSections ?? [];
+const itineraryNotes = detail?.itineraryNotes;
+const faqItems = detail?.faqItems ?? [];
+const finalCta = detail?.finalCta ?? {
+  eyebrow: 'READY TO PLAN YOUR JOURNEY?',
+  heading: `Let us shape your ${pkg.title} journey.`,
+  description: pkg.description,
+  primaryLabel: 'Get a Quote',
+  secondaryLabel: 'Customize This Journey'
+};
+
+const routeParts = pkg.destinations
+  .split(separator)
+  .map((part) => part.trim())
+  .filter((part) => part.length > 0);
+
+const durationValue = Number.parseInt(pkg.duration, 10);
+const dayCount = Number.isFinite(durationValue) && durationValue > 0 ? durationValue : 0;
+const itineraryDays = detail?.itineraryDays ?? pkg.itineraryDays ?? buildItineraryDays(dayCount, routeParts, itineraryNotes, pkg.highlights);
+
+function buildItineraryDays(
+  totalDays: number,
+  destinations: string[],
+  notes?: {
+    arrival: string;
+    city: string;
+    culture: string;
+    transfer: string;
+    flex: string;
+    departure: string;
+  },
+  highlights: string[] = []
+) {
+  const safeDays = totalDays > 0 ? totalDays : 0;
+  const route = destinations.length ? destinations : [pkg.destinations];
+
+  return Array.from({ length: safeDays }, (_, index) => {
+    const day = index + 1;
+    const routeIndex = route.length === 1
+      ? 0
+      : Math.min(route.length - 1, Math.floor(((day - 1) / Math.max(safeDays - 1, 1)) * route.length));
+    const destination = route[routeIndex];
+    const isFirst = day === 1;
+    const isLast = day === safeDays;
+    const isTransfer = !isFirst && !isLast && route.length > 1 && routeIndex > Math.floor(((day - 2) / Math.max(safeDays - 1, 1)) * route.length);
+    const isFlex = !isFirst && !isLast && day % 4 === 0;
+    const isCulture = !isFirst && !isLast && day % 2 === 0;
+
+    let description = '';
+    if (isFirst) {
+      description = `Ease into ${destination} on the opening day, giving yourself time to arrive, reset and start the trip with a calm sense of pace. ${notes?.arrival ?? ''}`.trim();
+    } else if (isLast) {
+      description = `Keep the final day practical and unhurried so departure feels smooth after the journey has had time to settle. ${notes?.departure ?? ''}`.trim();
+    } else if (isTransfer) {
+      description = `Today the route shifts toward ${destination}, and the transition is planned to feel like a natural part of the journey rather than a logistical interruption. ${notes?.transfer ?? ''}`.trim();
+    } else if (isFlex) {
+      description = `Leave the day open enough to follow your energy, the weather or a spontaneous idea. ${notes?.flex ?? ''}`.trim();
+    } else if (isCulture) {
+      description = `This day gives ${destination} room for cultural depth, local atmosphere and the kind of pace that helps the place feel lived in rather than rushed. ${notes?.culture ?? ''}`.trim();
+    } else {
+      description = `Spend the day in ${destination} with a balanced mix of movement, discovery and a few pauses that keep the experience comfortable. ${notes?.city ?? ''}`.trim();
+    }
+
+    return {
+      day,
+      title: isFirst ? `Arrive in ${destination}` : isLast ? 'Departure' : `${destination}: ${isTransfer ? 'Transition' : isFlex ? 'Flexible time' : isCulture ? 'Culture & local rhythm' : 'City discovery'}`,
+      destination,
+      description,
+      highlights: highlights.slice(0, 3)
+    };
+  });
+}
+---
+
+<div class="package-template">
+  <section class="package-template__hero">
+    <img src={pkg.image} alt={heroTitle} class="package-template__hero-image" />
+    <div class="package-template__hero-overlay"></div>
+    <div class="container package-template__hero-content">
+      <p class="package-template__eyebrow">{heroEyebrow}</p>
+      <h1>{heroTitle}</h1>
+      <p class="package-template__meta">{pkg.duration} {separator} {pkg.destinations}</p>
+      <p class="package-template__summary">{heroDescription}</p>
+      <div class="package-template__actions">
+        <a class="package-template__button package-template__button--primary" href="/contact/">Get a Quote</a>
+        <a class="package-template__button package-template__button--secondary" href="#package-template-itinerary">View Itinerary ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="package-template__brief">
+    <div class="container package-template__brief-inner">
+      <p class="package-template__section-kicker">{briefSections[0]?.eyebrow ?? 'WHY THIS JOURNEY'}</p>
+      <h2>{briefSections[0]?.heading}</h2>
+      {(briefSections[0]?.copy ?? '').split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+      {briefSections[0]?.points?.length ? (
+        <ul class="package-template__points">
+          {briefSections[0].points.map((point) => <li>{point}</li>)}
+        </ul>
+      ) : null}
+    </div>
+  </section>
+
+  <section class="package-template__brief package-template__brief--soft">
+    <div class="container package-template__brief-inner">
+      <p class="package-template__section-kicker">{briefSections[1]?.eyebrow ?? 'ROUTING'}</p>
+      <h2>{briefSections[1]?.heading}</h2>
+      {(briefSections[1]?.copy ?? '').split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+      {briefSections[1]?.points?.length ? (
+        <ul class="package-template__points">
+          {briefSections[1].points.map((point) => <li>{point}</li>)}
+        </ul>
+      ) : null}
+    </div>
+  </section>
+
+  <section class="package-template__brief">
+    <div class="container package-template__brief-inner">
+      <p class="package-template__section-kicker">{briefSections[2]?.eyebrow ?? 'LOCAL FEEL'}</p>
+      <h2>{briefSections[2]?.heading}</h2>
+      {(briefSections[2]?.copy ?? '').split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+      {briefSections[2]?.points?.length ? (
+        <ul class="package-template__points">
+          {briefSections[2].points.map((point) => <li>{point}</li>)}
+        </ul>
+      ) : null}
+    </div>
+  </section>
+
+  <section id="package-template-itinerary" class="package-template__itinerary">
+    <div class="container">
+      <header class="package-template__section-head">
+        <p class="package-template__section-kicker">Your journey</p>
+        <h2>Day by day.</h2>
+      </header>
+
+      <div class="package-template__timeline">
+        {itineraryDays.map((day, index) => (
+          <details class="package-template__timeline-item" open={index === 0}>
+            <summary>
+              <span class="package-template__day-number">Day {String(day.day).padStart(2, '0')}</span>
+              <span class="package-template__day-title">{day.title}</span>
+              <span class="package-template__day-destination">{day.destination}</span>
+            </summary>
+            <div class="package-template__timeline-content">
+              <p>{day.description}</p>
+              {day.highlights && day.highlights.length > 0 ? (
+                <ul>
+                  {day.highlights.map((highlight) => <li>{highlight}</li>)}
+                </ul>
+              ) : null}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="package-template__brief package-template__brief--soft">
+    <div class="container package-template__brief-inner">
+      <p class="package-template__section-kicker">{briefSections[3]?.eyebrow ?? 'PRACTICAL PLANNING'}</p>
+      <h2>{briefSections[3]?.heading}</h2>
+      {(briefSections[3]?.copy ?? '').split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+      {briefSections[3]?.points?.length ? (
+        <ul class="package-template__points">
+          {briefSections[3].points.map((point) => <li>{point}</li>)}
+        </ul>
+      ) : null}
+    </div>
+  </section>
+
+  <section class="package-template__faq">
+    <div class="container">
+      <header class="package-template__section-head">
+        <p class="package-template__section-kicker">Questions</p>
+        <h2>Frequently asked questions.</h2>
+      </header>
+
+      <div class="package-template__faq-list">
+        {faqItems.map((item) => (
+          <details class="package-template__faq-item">
+            <summary>{item.q}</summary>
+            <div class="package-template__faq-answer">
+              <p>{item.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="package-template__cta-shell">
+    <div class="container">
+      <div class="package-template__cta-card">
+        <div>
+          <p class="package-template__cta-kicker">{finalCta.eyebrow}</p>
+          <h2>{finalCta.heading}</h2>
+          <p>{finalCta.description}</p>
+        </div>
+        <div class="package-template__cta-actions">
+          <a class="package-template__button package-template__button--dark" href="/contact/">{finalCta.primaryLabel}</a>
+          <a class="package-template__button package-template__button--dark-secondary" href="/customise-your-trip/">{finalCta.secondaryLabel}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .package-template {
+    background: #f8f6f1;
+    color: #242424;
+    overflow-x: clip;
+  }
+
+  .package-template__hero {
+    position: relative;
+    min-height: clamp(560px, 76vh, 820px);
+    overflow: hidden;
+  }
+
+  .package-template__hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .package-template__hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.18));
+  }
+
+  .package-template__hero-content {
+    position: relative;
+    z-index: 2;
+    min-height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: clamp(44px, 7vw, 88px);
+    color: #fff;
+  }
+
+  .package-template__eyebrow,
+  .package-template__section-kicker,
+  .package-template__cta-kicker {
+    margin: 0 0 14px;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #f3dde1;
+  }
+
+  .package-template__hero h1 {
+    margin: 0;
+    font-size: clamp(2.7rem, 5vw, 4.5rem);
+    line-height: 1.03;
+    letter-spacing: -0.05em;
+    font-weight: 500;
+    color: #fff;
+    max-width: 760px;
+  }
+
+  .package-template__meta {
+    margin: 14px 0 0;
+    font-size: clamp(1rem, 1.7vw, 1.15rem);
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .package-template__summary {
+    max-width: 650px;
+    margin: 16px 0 0;
+    font-size: clamp(1rem, 1.55vw, 1.15rem);
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  .package-template__actions,
+  .package-template__cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .package-template__button {
+    min-height: 52px;
+    padding: 0 24px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 220ms ease, color 220ms ease, border-color 220ms ease, transform 220ms ease;
+  }
+
+  .package-template__button--primary {
+    background: #fff;
+    color: #171717;
+  }
+
+  .package-template__button--primary:hover,
+  .package-template__button--primary:focus-visible {
+    background: #b3262e;
+    color: #fff;
+  }
+
+  .package-template__button--secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    color: #fff;
+  }
+
+  .package-template__button--secondary:hover,
+  .package-template__button--secondary:focus-visible {
+    border-color: rgba(255, 255, 255, 0.8);
+    color: #fff;
+  }
+
+  .package-template__brief,
+  .package-template__itinerary,
+  .package-template__faq,
+  .package-template__cta-shell {
+    padding: clamp(82px, 10vw, 144px) 0;
+  }
+
+  .package-template__brief--soft,
+  .package-template__cta-shell {
+    background: #f8f6f1;
+  }
+
+  .package-template__brief-inner {
+    max-width: 920px;
+  }
+
+  .package-template__brief h2,
+  .package-template__section-head h2,
+  .package-template__cta-card h2 {
+    margin: 0;
+    font-size: clamp(2.1rem, 4vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.05em;
+    font-weight: 500;
+    color: #171717;
+  }
+
+  .package-template__brief p,
+  .package-template__timeline-content p,
+  .package-template__faq-answer p,
+  .package-template__cta-card p {
+    margin: 16px 0 0;
+    color: #6f6f6f;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .package-template__points {
+    display: grid;
+    gap: 10px;
+    margin: 22px 0 0;
+    padding: 0;
+    list-style: none;
+    color: #171717;
+    font-size: 0.98rem;
+  }
+
+  .package-template__points li {
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .package-template__points li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.75em;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: #b3262e;
+  }
+
+  .package-template__section-head {
+    margin-bottom: 28px;
+  }
+
+  .package-template__section-kicker {
+    color: #b3262e;
+  }
+
+  .package-template__timeline {
+    display: grid;
+    gap: 18px;
+  }
+
+  .package-template__timeline-item {
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(23, 23, 23, 0.08);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  .package-template__timeline-item summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 22px;
+  }
+
+  .package-template__timeline-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .package-template__day-number {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #b3262e;
+    font-weight: 600;
+  }
+
+  .package-template__day-title {
+    color: #171717;
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    font-weight: 500;
+  }
+
+  .package-template__day-destination {
+    color: #6f6f6f;
+    font-size: 14px;
+  }
+
+  .package-template__timeline-content {
+    padding: 0 22px 22px;
+    border-top: 1px solid rgba(23, 23, 23, 0.07);
+  }
+
+  .package-template__timeline-content ul,
+  .package-template__faq-answer ul {
+    margin: 14px 0 0;
+    padding-left: 18px;
+    color: #6f6f6f;
+    line-height: 1.7;
+  }
+
+  .package-template__faq-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  .package-template__faq-item {
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(23, 23, 23, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .package-template__faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 22px;
+    color: #171717;
+    font-size: 1.05rem;
+    font-weight: 500;
+  }
+
+  .package-template__faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .package-template__faq-answer {
+    border-top: 1px solid rgba(23, 23, 23, 0.08);
+    padding: 0 22px 22px;
+  }
+
+  .package-template__cta-card {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: clamp(42px, 5vw, 80px);
+    border-radius: 24px;
+    background: #171717;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .package-template__cta-card .package-template__cta-kicker {
+    color: #f3dde1;
+  }
+
+  .package-template__cta-card h2 {
+    color: #fff;
+    max-width: 620px;
+  }
+
+  .package-template__cta-card p {
+    color: rgba(255, 255, 255, 0.78);
+    max-width: 620px;
+  }
+
+  .package-template__button--dark {
+    background: #b3262e;
+    color: #fff;
+  }
+
+  .package-template__button--dark:hover,
+  .package-template__button--dark:focus-visible {
+    background: #8f1f26;
+    color: #fff;
+  }
+
+  .package-template__button--dark-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+  }
+
+  .package-template__button--dark-secondary:hover,
+  .package-template__button--dark-secondary:focus-visible {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+  }
+
+  @media (max-width: 899px) {
+    .package-template__timeline-item summary {
+      grid-template-columns: 1fr;
+    }
+
+    .package-template__cta-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .package-template__hero {
+      min-height: clamp(520px, 72vh, 700px);
+    }
+
+    .package-template__button {
+      width: 100%;
+    }
+
+    .package-template__cta-card {
+      padding: 42px 24px;
+    }
+  }
+</style>

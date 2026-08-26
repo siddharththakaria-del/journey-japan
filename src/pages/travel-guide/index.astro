@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { articles } from '../../data/articles';
+
+function formatUpdatedLabel(date) {
+  const parsed = new Date(`${date}T00:00:00Z`);
+  const month = new Intl.DateTimeFormat('en', { month: 'long' }).format(parsed);
+  const year = parsed.getUTCFullYear();
+  return `Updated ${month} ${year}`;
+}
+---
+<Layout title="Travel Guide | Journey Japan">
+  <section class="section">
+    <div class="container">
+      <h1 class="h2">Travel Guide</h1>
+      <p class="lead">Expert articles and practical advice to plan your trip to Japan.</p>
+
+      <div style="display:grid;gap:18px;margin-top:18px">
+        {articles.map(a=> (
+          <article class="card" style="display:flex;gap:12px;align-items:center;padding:12px">
+            <img src={a.image} alt={a.title} style="width:140px;height:80px;object-fit:cover;border-radius:8px" />
+            <div>
+              <a href={`/travel-guide/${a.slug}/`}><h3 class="h3">{a.title}</h3></a>
+              <div class="small" style="color:var(--muted)">{a.updatedLabel ?? formatUpdatedLabel(a.date)} • {a.readingTime} read</div>
+              <p class="small" style="margin-top:8px">{a.excerpt}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

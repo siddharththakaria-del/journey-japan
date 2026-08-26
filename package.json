@@ -1,0 +1,21 @@
+{
+  "name": "journey-japan",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "format": "prettier --write \"src/**/*.{ts,tsx,astro,css,scss,md}\""
+  },
+  "dependencies": {
+    "astro": "^3.0.0",
+    "gsap": "^3.12.0",
+    "lenis": "^1.0.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "prettier": "^2.8.0"
+  }
+}

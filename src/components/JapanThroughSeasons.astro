@@ -1,0 +1,100 @@
+---
+const seasons = [
+  {
+    label: 'SPRING',
+    title: 'Cherry Blossom Japan',
+    description: 'Soft pink landscapes, traditional gardens and one of Japan\'s most anticipated seasons.',
+    image: '/images/destinations/kyoto.webp',
+    accent: '#F3DDE1',
+    className: 'season season--large season--spring'
+  },
+  {
+    label: 'SUMMER',
+    title: 'Green Japan',
+    description: 'Mountain landscapes, coastal escapes, festivals and long summer days.',
+    image: '/images/destinations/mount-fuji.webp',
+    accent: '#B89A5A',
+    className: 'season season--small season--summer'
+  },
+  {
+    label: 'AUTUMN',
+    title: 'Japan in Colour',
+    description: 'Maple-covered temples, crisp air and some of Japan\'s most beautiful landscapes.',
+    image: '/images/destinations/tokyo.webp',
+    accent: '#B3262E',
+    className: 'season season--small season--autumn'
+  },
+  {
+    label: 'WINTER',
+    title: 'Snow Japan',
+    description: 'Snow-covered landscapes, winter cuisine, hot springs and northern adventures.',
+    image: '/images/experiences/japan-night.webp',
+    accent: '#D8E2EA',
+    className: 'season season--large season--winter'
+  }
+];
+---
+
+<section class="jj-section japan-through-seasons" aria-labelledby="seasons-heading">
+  <div class="jj-container">
+    <header class="section-header">
+      <div class="eyebrow">JAPAN, ALL YEAR ROUND</div>
+      <h2 id="seasons-heading">Japan changes with every season.</h2>
+      <p>Cherry blossoms, summer festivals, autumn colour and winter landscapes — every season reveals a different side of Japan.</p>
+    </header>
+
+    <div class="season-grid">
+      {seasons.map((season) => (
+        <article class={season.className} style={`--season-accent:${season.accent};`}>
+          <img src={season.image} alt={season.title} />
+          <div class="season-overlay"></div>
+          <div class="season-content">
+            <span class="season-label">{season.label}</span>
+            <h3>{season.title}</h3>
+            <p>{season.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <a href="/packages/" class="season-link">Find the right time to visit Japan <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<style>
+.japan-through-seasons{position:relative;background:var(--jj-white);padding:clamp(110px,13vw,180px) 0}
+.section-header{max-width:670px;margin-bottom:38px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:0.15em;color:var(--jj-red);margin-bottom:14px}
+.section-header h2{margin:0;font-size:clamp(38px,4vw,64px);line-height:1.05;color:var(--jj-charcoal);font-weight:500}
+.section-header p{margin-top:16px;font-size:17px;line-height:1.7;color:var(--jj-muted);max-width:650px}
+
+.season-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;grid-template-areas:'spring summer autumn' 'winter winter autumn';gap:18px}
+.season{position:relative;overflow:hidden;border-radius:22px;min-height:300px;display:flex;align-items:flex-end;isolation:isolate;background:#e1ddd5}
+.season img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 600ms ease}
+.season:hover img{transform:scale(1.04)}
+.season-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(23,23,23,0.08) 15%, rgba(23,23,23,0.72) 100%)}
+.season-content{position:relative;z-index:2;padding:20px 20px 18px}
+.season-label{display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);font-size:12px;letter-spacing:0.14em;color:var(--jj-white);font-weight:600}
+.season-content h3{margin:12px 0 8px;font-size:clamp(26px,2vw,34px);line-height:1.08;color:var(--jj-white);font-weight:500}
+.season-content p{margin:0;font-size:15px;line-height:1.6;color:rgba(255,255,255,0.86)}
+
+.season--spring{grid-area:spring;min-height:420px}
+.season--summer{grid-area:summer;min-height:220px}
+.season--autumn{grid-area:autumn;min-height:420px}
+.season--winter{grid-area:winter;min-height:260px}
+
+.season-link{display:inline-flex;align-items:center;gap:8px;margin-top:28px;color:var(--jj-red);font-weight:600;text-decoration:none}
+.season-link span{color:var(--jj-red)}
+
+@media (max-width:900px){
+  .season-grid{grid-template-columns:1fr 1fr;grid-template-areas:'spring spring' 'summer autumn' 'winter winter';}
+  .season--spring,.season--winter,.season--autumn,.season--summer{min-height:260px;grid-area:auto}
+}
+
+@media (max-width:620px){
+  .season-grid{grid-template-columns:1fr;grid-template-areas:'spring' 'summer' 'autumn' 'winter';}
+  .season{min-height:260px}
+  .japan-through-seasons{padding:clamp(90px,16vw,120px) 0}
+}
+</style>
+

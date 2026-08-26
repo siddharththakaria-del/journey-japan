@@ -1,0 +1,12 @@
+---
+const exp = Astro.props as { title: string; image: string; category?: string; slug?: string };
+---
+<article class="card" style="overflow:hidden">
+  <a href={`/travel-guide/`} style="display:block">
+    <img src={exp.image} alt={exp.title} style="height:180px;object-fit:cover;width:100%" />
+  </a>
+  <div class="card__content">
+    <h4 style="margin:0">{exp.title}</h4>
+    <p class="small" style="color:var(--muted);margin-top:8px">{exp.category}</p>
+  </div>
+</article>

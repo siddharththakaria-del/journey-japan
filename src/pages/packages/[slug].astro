@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { packages } from '../../data/packages';
+import PackageDetailTemplate from '../../components/packages/PackageDetailTemplate.astro';
+
+export function getStaticPaths() {
+  return packages.map((pkg) => ({
+    params: { slug: pkg.slug }
+  }));
+}
+
+const { slug } = Astro.params;
+const pkg = packages.find((p) => p.slug === slug);
+
+if (!pkg) {
+  throw new Error('Package not found');
+}
+
+const pageTitle = `${pkg.title} | Journey Japan`;
+const pageDescription = pkg.description;
+const pageCanonical = `/packages/${pkg.slug}/`;
+---
+
+<Layout title={pageTitle} description={pageDescription} canonical={pageCanonical} image={pkg.image}>
+  <PackageDetailTemplate pkg={pkg} />
+</Layout>

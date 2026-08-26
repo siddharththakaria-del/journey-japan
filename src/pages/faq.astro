@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+const items = [
+  { q: 'How far in advance should I book?', a: 'We recommend booking 4-6 months in advance for peak seasons.' },
+  { q: 'Can you arrange vegetarian and Jain food?', a: 'Yes, we specialise in arranging 100% vegetarian and Jain-friendly dining.' },
+  { q: 'Do you provide visa assistance?', a: 'We provide guidance and visa assistance as part of some packages.' }
+];
+---
+<Layout title="FAQ | Journey Japan">
+  <section class="section">
+    <div class="container">
+      <h1 class="h2">FAQ</h1>
+      <p class="lead">Common questions about our services and travel in Japan.</p>
+      <FAQAccordion items={items} />
+    </div>
+  </section>
+</Layout>

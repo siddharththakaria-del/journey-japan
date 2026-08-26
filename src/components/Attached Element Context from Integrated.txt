@@ -1,0 +1,48 @@
+Attached Element Context from Integrated Browser
+
+Element: section.section.section--tight
+
+URL: http://localhost:4321/
+
+HTML Path: main > section.section.section--tight
+
+Outer HTML:
+```html
+<section class="section section--tight"> <div class="container"> <div style="display:grid;grid-template-columns:1fr;gap:20px;align-items:center"> <div> <h2 class="h2">The Journey Japan Difference</h2> <p class="lead">Three pillars of our approach that ensure every trip is authentic and effortless.</p> <div style="display:flex;gap:18px;margin-top:20px;flex-wrap:wrap"> <div style="min-width:200px"> <strong>01</strong> <h3 class="h3">30+ Years in Japan</h3> <p class="small">Deep relationships and decades of experience arranging travel across Japan.</p> </div> <div style="min-width:200px"> <strong>02</strong> <h3 class="h3">Authentic Japan</h3> <p class="small">Local guides and curated experiences beyond standard tourist routes.</p> </div> <div style="min-width:200px"> <strong>03</strong> <h3 class="h3">Japan Without Compromise</h3> <p class="small">Specialist vegetarian &amp; Jain arrangements so dietary needs are handled with care.</p> </div> </div> </div> </div> </div> </section>
+```
+
+Dimensions:
+- top: -73px
+- left: 0px
+- width: 1716px
+- height: 476px
+
+CSS:
+```css
+* { box-sizing:border-box;margin:0;padding:0 }
+.section { padding:var(--section-padding) 0 }
+
+/* Inherited */
+body { color:var(--color-charcoal); line-height:var(--lead-line-height) }
+html { font-family:var(--font-sans); font-size:16px }
+
+/* Resolved values */
+margin: 0px;
+padding: 80px 0px;
+box-sizing: border-box;
+color: rgb(23, 23, 23);
+display: block;
+font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+font-feature-settings: "liga";
+font-size: 16px;
+height: 476.4px;
+line-height: 25.6px;
+unicode-bidi: isolate /*UA*/;
+width: 1716.27px;
+
+/* CSS variables */
+--font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+--lead-line-height: 1.6;
+--section-padding: 80px;
+--color-charcoal: #171717;
+```

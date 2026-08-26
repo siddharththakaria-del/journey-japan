@@ -1,0 +1,119 @@
+---
+const travelerValueCards = [
+  {
+    title: 'First-time visitors feel oriented',
+    text: 'Clear routing, realistic pacing and practical planning help make a first trip to Japan feel calm and confident.'
+  },
+  {
+    title: 'Food planning feels considered',
+    text: 'Vegetarian and Jain-friendly dining requests can be woven into the journey without making the experience feel niche.'
+  },
+  {
+    title: 'Private journeys feel personal',
+    text: 'From couples to families and corporate travelers, every journey is shaped around how people actually like to travel.'
+  }
+];
+---
+
+<section class="testimonials" aria-labelledby="testimonials-heading">
+  <div class="jj-container">
+    <header class="section-header">
+      <div class="eyebrow">TRAVEL STORIES</div>
+      <h2 id="testimonials-heading">What travelers value most.</h2>
+      <p>Not every journey starts the same way, but the things travelers value most are consistent: clarity, confidence, thoughtful planning and a strong sense of place.</p>
+    </header>
+
+    <div class="testimonial-shell">
+      {travelerValueCards.map((item, index) => (
+        <article class="secondary-card">
+          <div class="card-index">0{index + 1}</div>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </article>
+        ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.testimonials {
+  background: var(--jj-cream);
+  padding: clamp(110px, 13vw, 180px) 0;
+}
+
+.section-header {
+  max-width: 760px;
+  margin-bottom: 36px;
+}
+
+.eyebrow {
+  margin-bottom: 14px;
+  color: var(--jj-red);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+.section-header h2 {
+  margin: 0;
+  color: var(--jj-charcoal);
+  font-size: clamp(36px, 4vw, 60px);
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.section-header p {
+  margin-top: 14px;
+  max-width: 720px;
+  color: var(--jj-muted);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.testimonial-shell {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.secondary-testimonials {
+  display: grid;
+  gap: 18px;
+}
+
+.secondary-card {
+  background: rgba(255,255,255,0.5);
+  border: 1px solid rgba(23,23,23,0.06);
+  border-radius: 18px;
+  padding: 22px 20px 20px;
+}
+
+.secondary-card h3 {
+  margin: 10px 0 8px;
+  color: var(--jj-charcoal);
+  font-size: clamp(20px, 1.8vw, 24px);
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.secondary-card p {
+  margin: 0;
+  color: var(--jj-muted);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.card-index {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--jj-red);
+}
+
+@media (max-width: 900px) {
+  .testimonial-shell {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

@@ -1,0 +1,66 @@
+<section class="final-cta" aria-labelledby="final-cta-heading">
+  <div class="final-cta-media" aria-hidden="true">
+    <img src="/images/hero/japan-hero.webp" alt="" />
+    <div class="final-cta-overlay"></div>
+  </div>
+
+  <div class="jj-container final-cta-content">
+    <div class="cta-decor" aria-hidden="true"></div>
+    <div class="eyebrow">YOUR JAPAN JOURNEY STARTS HERE</div>
+    <h2 id="final-cta-heading">Ready to discover Japan your way?</h2>
+    <p>Tell us what you want to experience, and we will help shape a Japan journey around you.</p>
+
+    <div class="cta-actions">
+      <a class="primary-cta" href="/customise-your-trip/">Create My Journey</a>
+      <a class="secondary-cta" href="/packages/">Explore Japan Packages <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<style>
+.final-cta{position:relative;overflow:hidden;min-height:620px;display:flex;align-items:center;background:var(--jj-charcoal)}
+.final-cta-media,.final-cta-media img,.final-cta-overlay{position:absolute;inset:0}
+.final-cta-media img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.03);transition:transform 6000ms ease}
+.final-cta:hover .final-cta-media img{transform:scale(1)}
+.final-cta-overlay{background:linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.65))}
+
+.final-cta-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:72px;padding-bottom:72px;color:var(--jj-white)}
+.cta-decor{width:1px;height:72px;background:rgba(179,38,46,0.9);margin-bottom:18px;box-shadow:0 0 0 2px rgba(179,38,46,0.1)}
+.eyebrow{color:var(--jj-sakura);font-size:12px;letter-spacing:0.16em;font-weight:600;margin-bottom:16px}
+.final-cta-content h2{margin:0;max-width:860px;color:var(--jj-white);font-size:clamp(40px,5vw,72px);line-height:1.0;font-weight:500;letter-spacing:-0.05em}
+.final-cta-content p{margin-top:16px;max-width:620px;color:rgba(255,255,255,0.84);font-size:17px;line-height:1.6}
+.cta-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:26px}
+
+.primary-cta{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 24px;border-radius:12px;background:var(--jj-white);color:var(--jj-charcoal);font-size:15px;font-weight:600;text-decoration:none;transition:background 300ms ease,color 300ms ease,transform 300ms ease}
+.primary-cta:hover{background:var(--jj-red);color:var(--jj-white);transform:translateY(-2px)}
+.secondary-cta{color:var(--jj-white);text-decoration:none;font-weight:500;position:relative}
+.secondary-cta::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:1px;background:rgba(255,255,255,0.62)}
+.secondary-cta:hover{color:var(--jj-sakura)}
+
+@media(max-width:768px){
+  .final-cta{min-height:560px}
+  .cta-actions{flex-direction:column}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .final-cta-media img,.final-cta-content{transition:none;transform:none}
+}
+</style>
+
+<script>
+  const section = document.querySelector('.final-cta');
+  if (section) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      section.classList.add('visible');
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            section.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.2 });
+      observer.observe(section);
+    }
+  }
+</script>

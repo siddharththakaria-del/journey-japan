@@ -1,0 +1,59 @@
+---
+const supportPoints = [
+  'Regional knowledge',
+  'Local relationships',
+  'Seasonal understanding',
+  'Itinerary design'
+];
+---
+
+<section class="travel-confidence" aria-labelledby="trust-heading">
+  <div class="jj-container trust-layout">
+    <div class="trust-figure">
+      <div class="trust-number">30+</div>
+      <div class="trust-label">YEARS OF JAPAN</div>
+    </div>
+
+    <div class="trust-copy">
+      <div class="eyebrow">30+ YEARS OF JAPAN</div>
+      <h2 id="trust-heading">Three decades. One deep understanding of Japan.</h2>
+      <p>Experience has shaped how we think about regional knowledge, local relationships, seasonal understanding, transportation planning, accommodation selection, itinerary design and the needs of different travelers.</p>
+
+      <div class="trust-points" aria-label="Experience highlights">
+        {supportPoints.map((point) => (
+          <div class="trust-point">{point}</div>
+        ))}
+      </div>
+
+      <a class="trust-cta" href="/about/">Our Story <span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="trust-image">
+      <img src="/images/about/japan-expertise.webp" alt="Japan expertise and local knowledge" />
+    </div>
+  </div>
+</section>
+
+<style>
+.travel-confidence{background:var(--jj-cream);padding:clamp(76px,9vw,110px) 0}
+.trust-layout{display:grid;grid-template-columns:0.65fr 1fr 0.95fr;gap:24px;align-items:center}
+.trust-figure{align-self:stretch;display:flex;flex-direction:column;justify-content:center;background:var(--jj-white);border:1px solid rgba(23,23,23,0.06);border-radius:22px;padding:24px}
+.trust-number{font-size:clamp(72px,9vw,140px);line-height:0.85;color:var(--jj-red);font-weight:500;letter-spacing:-0.06em}
+.trust-label{margin-top:10px;font-size:12px;letter-spacing:0.14em;color:var(--jj-muted)}
+.trust-copy{max-width:650px}
+.eyebrow{margin-bottom:14px;color:var(--jj-red);font-size:12px;font-weight:600;letter-spacing:0.15em}
+.trust-copy h2{margin:0;color:var(--jj-charcoal);font-size:clamp(36px,4vw,60px);line-height:1.03;font-weight:500}
+.trust-copy p{margin-top:14px;color:var(--jj-muted);font-size:17px;line-height:1.7}
+
+.trust-points{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.trust-point{padding:10px 14px;border-radius:999px;background:rgba(255,255,255,0.72);border:1px solid rgba(23,23,23,0.08);color:var(--jj-charcoal);font-size:14px;font-weight:600}
+.trust-cta{display:inline-flex;align-items:center;gap:8px;margin-top:24px;color:var(--jj-red);font-weight:600;text-decoration:none}
+.trust-cta span{color:var(--jj-red)}
+.trust-image{border-radius:22px;overflow:hidden;background:#e8e1d5}
+.trust-image img{display:block;width:100%;height:100%;min-height:380px;object-fit:cover}
+
+@media(max-width:1100px){
+  .trust-layout{grid-template-columns:1fr}
+  .trust-image img{min-height:300px}
+}
+</style>

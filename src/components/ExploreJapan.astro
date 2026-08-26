@@ -1,0 +1,77 @@
+---
+const destinations = [
+  { name: 'Tokyo', text: 'City · Culture · Food', image: '/images/destinations/tokyo.webp', className: 'tile tile--large tile--tokyo' },
+  { name: 'Kyoto', text: 'Heritage · Craft · Tradition', image: '/images/destinations/kyoto.webp', className: 'tile tile--wide tile--kyoto' },
+  { name: 'Osaka', text: 'Food · Energy · Nightlife', image: '/images/packages/classic-japan/classic-japan-osaka.webp', className: 'tile tile--compact tile--osaka' },
+  { name: 'Mount Fuji', text: 'Scenery · Nature · Escape', image: '/images/destinations/mount-fuji.webp', className: 'tile tile--compact tile--fuji' },
+];
+---
+
+<section class="jj-section explore-japan" aria-labelledby="explore-japan-heading">
+  <div class="jj-container">
+    <header class="section-header">
+      <div class="eyebrow">EXPLORE JAPAN</div>
+      <h2 id="explore-japan-heading">Where will Japan take you?</h2>
+      <p>From the energy of Tokyo to the timeless streets of Kyoto, discover the places that make Japan unforgettable.</p>
+    </header>
+
+    <div class="destination-grid" aria-label="Japan destination highlights">
+      {destinations.map((destination) => (
+        <article class={destination.className}>
+          <img src={destination.image} alt={destination.name} />
+          <div class="destination-overlay"></div>
+          <div class="destination-content">
+            <h3>{destination.name}</h3>
+            <span>{destination.text}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <a class="inline-link" href="/packages/">Explore Japan Packages <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<style>
+.explore-japan{position:relative;background:var(--jj-white);padding:clamp(100px,12vw,170px) 0}
+.section-header{max-width:700px;margin-bottom:40px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:0.15em;color:var(--jj-red);margin-bottom:14px}
+.section-header h2{margin:0;font-size:clamp(36px,4.3vw,60px);line-height:1.08;color:var(--jj-charcoal);font-weight:500}
+.section-header p{margin-top:16px;max-width:620px;font-size:17px;line-height:1.65;color:var(--jj-muted)}
+
+.destination-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:20px;align-items:stretch}
+.tile{position:relative;overflow:hidden;border-radius:20px;display:block;min-height:240px;isolation:isolate;background:#d9d3cf}
+.tile img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 650ms cubic-bezier(.22,1,.36,1)}
+.tile:hover img{transform:scale(1.05)}
+.destination-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(23,23,23,0.03) 20%, rgba(23,23,23,0.7) 100%)}
+.destination-content{position:absolute;left:22px;right:20px;bottom:20px;z-index:2;transform:translateY(0);transition:transform 350ms ease}
+.tile:hover .destination-content{transform:translateY(-8px)}
+.destination-content h3{margin:0 0 4px;font-size:clamp(24px,2vw,32px);font-weight:500;color:var(--jj-white);letter-spacing:-0.02em}
+.destination-content span{font-size:13px;color:rgba(255,255,255,0.80);letter-spacing:0.02em}
+
+.tile--large{grid-column:span 1;grid-row:span 2;min-height:520px}
+.tile--wide{grid-column:span 1;min-height:250px}
+.tile--compact{min-height:220px}
+
+.inline-link{display:inline-flex;align-items:center;gap:8px;margin-top:30px;color:var(--jj-charcoal);font-weight:600;text-decoration:none}
+.inline-link span{color:var(--jj-red)}
+
+@media (max-width:980px){
+  .destination-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .tile--large{grid-column:span 2;min-height:420px}
+  .tile--wide,.tile--compact{grid-column:auto}
+}
+
+@media (max-width:768px){
+  .destination-grid{grid-template-columns:1fr;gap:16px}
+  .tile--large,.tile--wide,.tile--compact{grid-column:auto;min-height:260px}
+  .tile--large{min-height:340px}
+  .destination-content{left:18px;right:18px;bottom:18px}
+  .explore-japan{padding:clamp(90px,16vw,120px) 0}
+}
+
+@media (hover: none){
+  .tile img{transition:none}
+  .tile:hover .destination-content{transform:none}
+}
+</style>

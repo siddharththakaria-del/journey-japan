@@ -1,0 +1,59 @@
+---
+const props = Astro.props as { eyebrow?: string; title?: string; intro?: string };
+---
+<section class="hero" aria-label="Hero">
+  <div class="hero__media" aria-hidden="true">
+    <img src="/images/hero/japan-hero.webp" alt="Cinematic view of Japan" />
+    <div class="hero__overlay"></div>
+  </div>
+
+  <div class="jj-container hero__content">
+    <div class="hero__inner">
+      <div class="hero__text">
+        <div class="eyebrow reveal" style="--delay:0.05s">{props.eyebrow ?? 'JOURNEY JAPAN'}</div>
+        <h1 class="hero__title reveal" style="--delay:0.15s">{props.title ?? 'Discover Japan beyond the ordinary path.'}</h1>
+        <p class="hero__lead reveal" style="--delay:0.30s">{props.intro ?? 'Authentic Japan experiences, thoughtfully curated by people who know the country.'}</p>
+
+        <div class="hero__actions reveal" style="--delay:0.44s">
+          <a class="button button--hero-primary" href="/packages/">Explore Japan</a>
+          <a class="button button--hero-ghost" href="/customise-your-trip/">Create My Journey</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll">Scroll to explore</div>
+  </div>
+</section>
+
+<style>
+.hero{position:relative;overflow:hidden;min-height:82vh;display:flex;align-items:center}
+@media(min-width:900px){.hero{min-height:84vh}}
+
+.hero__media{position:absolute;inset:0;height:100%;z-index:0}
+.hero__media img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block}
+.hero__overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.28) 10%, rgba(0,0,0,0.18) 35%, rgba(0,0,0,0.08) 60%, rgba(0,0,0,0.00) 100%);mix-blend-mode:multiply}
+
+.jj-container{position:relative;z-index:6;padding-top:64px;padding-bottom:64px}
+.hero__inner{display:flex;align-items:center}
+.hero__text{max-width:650px}
+
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:0.16em;color:var(--jj-sakura);margin-bottom:14px}
+.hero__title{font-weight:600;line-height:1.02;margin:0;color:var(--jj-white);font-size:clamp(40px,11vw,84px);letter-spacing:-0.02em}
+.hero__lead{font-size:18px;color:rgba(255,255,255,0.92);line-height:1.6;max-width:520px;margin-top:18px}
+
+.hero__actions{display:flex;gap:12px;margin-top:24px}
+.button--hero-primary{background:var(--jj-white);color:var(--jj-charcoal);height:52px;padding:0 26px;border-radius:12px;font-weight:600;font-size:15px;display:inline-flex;align-items:center;justify-content:center;transition:transform 220ms}
+.button--hero-primary:hover{transform:translateY(-2px)}
+
+.button--hero-ghost{background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.45);color:var(--jj-white);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);height:52px;padding:0 22px;border-radius:12px;display:inline-flex;align-items:center}
+
+.hero__scroll{position:absolute;left:50%;transform:translateX(-50%);bottom:28px;font-size:12px;color:rgba(255,255,255,0.70);z-index:6}
+
+/* Reveal animations */
+@keyframes jj-fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(10px);animation:jj-fadeUp 720ms cubic-bezier(.22,1,.36,1) forwards;animation-delay:var(--delay,0s)}
+@media (prefers-reduced-motion: reduce){.reveal{animation:none;opacity:1;transform:none}}
+
+/* Prevent horizontal overflow */
+.hero, .hero *{max-width:100%}
+</style>

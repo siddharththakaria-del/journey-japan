@@ -1,0 +1,770 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const whatWeDo = [
+  {
+    title: 'Fixed package tours',
+    copy: 'Structured journeys for travelers who want a clear route, practical pacing and a trusted plan from the start.'
+  },
+  {
+    title: 'Custom private journeys',
+    copy: 'Personalized itineraries shaped around pace, interests, comfort level and the kind of trip you want to take.'
+  },
+  {
+    title: 'Group travel',
+    copy: 'Flexible group itineraries that keep logistics simple while still feeling considered and well organized.'
+  },
+  {
+    title: 'Honeymoons and couples',
+    copy: 'Romantic Japan journeys with room for special stays, slower moments and memorable dining.'
+  },
+  {
+    title: 'Family travel',
+    copy: 'Routes that balance movement, comfort and experiences so different ages can travel well together.'
+  },
+  {
+    title: 'Corporate and special travel',
+    copy: 'Business and incentive journeys with reliable planning, transfers and support around the details.'
+  }
+];
+
+const journeyPrinciples = [
+  {
+    title: 'Route design',
+    copy: 'We think about how the days connect before adding more stops.'
+  },
+  {
+    title: 'Pacing',
+    copy: 'We leave enough room for arrival, rest and real enjoyment.'
+  },
+  {
+    title: 'Accommodation',
+    copy: 'We match the stay to the role it plays in the journey.'
+  },
+  {
+    title: 'Dining',
+    copy: 'We plan food with the same care as the rest of the itinerary.'
+  }
+];
+
+const foodExpertise = [
+  {
+    title: 'Vegetarian planning',
+    copy: 'We communicate requirements clearly, check ingredients and build dining options into the route.'
+  },
+  {
+    title: 'Jain-friendly planning',
+    copy: 'We take individual requirements seriously and avoid assuming one generic dietary definition.'
+  },
+  {
+    title: 'Restaurant coordination',
+    copy: 'We work with the itinerary and the restaurant plan together so meals feel practical, not stressful.'
+  }
+];
+
+const journeysCreated = [
+  {
+    title: 'First-time journeys',
+    copy: 'Carefully paced routes that help travelers feel confident, settled and well supported.'
+  },
+  {
+    title: 'Honeymoon journeys',
+    copy: 'Romantic itineraries with special stays, slower chapters and memorable dining.'
+  },
+  {
+    title: 'Family journeys',
+    copy: 'Travel plans that respect different ages, different energy levels and the need for flexibility.'
+  },
+  {
+    title: 'Vegetarian and Jain journeys',
+    copy: 'Trips designed with dining, communication and comfort built into the plan from the beginning.'
+  },
+  {
+    title: 'Luxury journeys',
+    copy: 'Premium travel with the right balance of comfort, privacy and thoughtful access.'
+  },
+  {
+    title: 'Small group journeys',
+    copy: 'Shared travel that still feels organized, warm and easy to navigate.'
+  }
+];
+
+const supporters = [
+  {
+    title: 'Trusted accommodations',
+    copy: 'Hotels and ryokan that support a smoother travel experience and a more consistent standard of stay.'
+  },
+  {
+    title: 'Local guides and hosts',
+    copy: 'People who help turn a route into a more grounded and meaningful experience.'
+  },
+  {
+    title: 'Restaurant partners',
+    copy: 'Dining relationships that help us plan food with more care and fewer surprises.'
+  },
+  {
+    title: 'Transport and transfer partners',
+    copy: 'Support that keeps movement across cities, airports and stations feeling reliable.'
+  }
+];
+
+const tourPhotos = Array.from({ length: 25 }, (_, index) => {
+  const number = String(index + 1).padStart(2, '0');
+  const variants = ['feature', 'wide', 'standard', 'standard', 'wide'];
+  const altTexts = [
+    'Travellers experiencing Japan with Journey Japan',
+    'Journey Japan tour experience',
+    'Travellers exploring Japan',
+    'Journey Japan travel moment',
+    'Travellers discovering Japan with Journey Japan'
+  ];
+
+  return {
+    src: `/images/about/tours/tour-${number}.webp`,
+    alt: altTexts[index % altTexts.length],
+    variant: variants[index % variants.length]
+  };
+});
+---
+
+<Layout
+  title="About Journey Japan"
+  description="Discover Journey Japan’s story, 30+ years of Japan experience, thoughtful travel planning, food expertise and the principles behind our itineraries."
+  canonical="/about/"
+>
+  <article class="about-page">
+    <section class="about-hero about-reveal">
+      <div class="container about-hero__inner">
+        <p class="about-kicker">ABOUT JOURNEY JAPAN</p>
+        <div class="about-hero__mark" aria-hidden="true"></div>
+        <h1>Japan, experienced differently.</h1>
+        <p class="about-hero__intro">
+          For more than three decades, our connection with Japan has shaped the way we design journeys — with local knowledge, thoughtful planning and a deep respect for the culture, people and places that make the country extraordinary.
+        </p>
+        <div class="about-hero__actions">
+          <a class="button button--primary" href="#story">Discover Our Story</a>
+          <a class="button button--outline" href="/customise-your-trip/">Plan Your Journey</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="story" class="about-section about-section--white about-reveal">
+      <div class="container about-section__inner about-split">
+        <div>
+          <p class="about-section__eyebrow">OUR STORY</p>
+          <h2>More than a tour company.</h2>
+        </div>
+        <div class="about-copy">
+          <p>
+            Journey Japan is built around a genuine connection with Japan, not just around the mechanics of moving people from one famous place to the next. Over time, that connection has become a way of working: understand the country properly, understand the traveler properly and then build the journey between the two with care.
+          </p>
+          <p>
+            That means long-term experience, local understanding and cultural awareness are not abstract values here. They are practical tools. They shape the rhythm of the trip, the choice of accommodation, the order of the route and the moments we choose to leave open for discovery. A good journey should feel considered, comfortable, authentic and meaningful all at once.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section about-section--cream about-reveal">
+      <div class="container about-section__inner">
+        <p class="about-section__eyebrow">30+ YEARS OF JAPAN</p>
+        <div class="about-highlight">
+          <div>
+            <h2>Experience that shows up in the details.</h2>
+            <p>
+              Japan changes by season, region and even neighborhood, so experience matters most when it changes the quality of the plan. Over the years, we have learned how to shape itineraries that feel practical without feeling plain, refined without feeling rigid and personal without losing structure.
+            </p>
+          </div>
+          <div class="about-stats">
+            <div class="about-stat">
+              <strong>30+ years</strong>
+              <span>of Japan-focused experience</span>
+            </div>
+            <div class="about-stat">
+              <strong>Local knowledge</strong>
+              <span>built into every route</span>
+            </div>
+            <div class="about-stat">
+              <strong>Thoughtful planning</strong>
+              <span>for comfort, pace and trust</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section about-section--white about-reveal">
+      <div class="container about-section__inner">
+        <p class="about-section__eyebrow">WHAT WE DO</p>
+        <div class="about-grid about-grid--three">
+          {whatWeDo.map((item) => (
+            <article class="about-card">
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section about-section--cream about-reveal">
+      <div class="container about-section__inner about-split">
+        <div>
+          <p class="about-section__eyebrow">THE JOURNEY IS IN THE DETAILS</p>
+          <h2>Small decisions shape the feeling of the whole trip.</h2>
+        </div>
+        <div class="about-copy">
+          <p>
+            The difference between a good Japan trip and a memorable one is often found in the invisible parts of the itinerary: the order of the route, the length of the stay, how much is asked of the traveler each day and how well the accommodations suit the chapter of the trip they sit in.
+          </p>
+          <p>
+            We pay attention to those details because they change the experience in a real way. A journey feels calmer when the movement makes sense. It feels more rewarding when the special stays have enough time to matter. It feels more authentic when the plan leaves room to notice what is actually happening in the places you visit.
+          </p>
+        </div>
+      </div>
+      <div class="container about-section__inner">
+        <div class="about-grid about-grid--four">
+          {journeyPrinciples.map((item) => (
+            <article class="about-card about-card--soft">
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section about-section--white about-reveal">
+      <div class="container about-section__inner">
+        <p class="about-section__eyebrow">FOOD & DIETARY EXPERTISE</p>
+        <div class="about-highlight">
+          <div>
+            <h2>Food planning is part of the itinerary, not an afterthought.</h2>
+            <p>
+              Japan’s food culture is one of the country’s great strengths, but it also asks travelers to plan carefully when vegetarian or Jain requirements matter. That is why food planning is woven into the route from the beginning rather than left until the end.
+            </p>
+          </div>
+          <div class="about-note">
+            <p>
+              Journey Japan has strong relationships within Japan’s restaurant community and uses them thoughtfully to support vegetarian and Jain-friendly planning where the itinerary allows it.
+            </p>
+          </div>
+        </div>
+        <div class="about-grid about-grid--three about-grid--mt">
+          {foodExpertise.map((item) => (
+            <article class="about-card">
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section about-section--cream about-reveal">
+      <div class="container about-section__inner">
+        <p class="about-section__eyebrow">REAL JOURNEYS</p>
+        <h2>Journeys we've created.</h2>
+        <div class="about-grid about-grid--three about-grid--mt">
+          {journeysCreated.map((item) => (
+            <article class="about-card">
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+        <div class="about-gallery">
+          {tourPhotos.map((photo, index) => (
+            <figure class:list={['about-photo', `about-photo--${photo.variant}`]}>
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                loading="lazy"
+                decoding="async"
+                class:list={[index === 0 && 'about-photo__image--featured']}
+              />
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section about-section--white about-reveal">
+      <div class="container about-section__inner">
+        <p class="about-section__eyebrow">OUR SUPPORTERS</p>
+        <h2>Behind every journey is a network of people who make it work.</h2>
+        <div class="about-grid about-grid--four about-grid--mt">
+          {supporters.map((item) => (
+            <article class="about-card about-card--support">
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section about-section--cream about-reveal">
+      <div class="container about-section__inner about-split">
+        <div>
+          <p class="about-section__eyebrow">OUR MISSION</p>
+          <h2>To make Japan feel more considered, more human and more possible.</h2>
+        </div>
+        <div class="about-copy about-copy--quote">
+          <p>
+            Our mission is to help travelers experience Japan with clarity and confidence by designing journeys that respect pace, culture and real-world logistics. We want the planning to feel calm and the trip itself to feel generous.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section about-section--white about-reveal">
+      <div class="container about-section__inner about-split">
+        <div>
+          <p class="about-section__eyebrow">OUR VISION</p>
+          <h2>Travel that feels personal, polished and deeply rooted in place.</h2>
+        </div>
+        <div class="about-copy about-copy--quote">
+          <p>
+            Our vision is for Journey Japan to remain a trusted way to explore the country thoughtfully — where design, hospitality and local insight work together to create journeys that feel elegant without feeling distant.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section about-section--cream about-reveal">
+      <div class="container about-section__inner">
+        <p class="about-section__eyebrow">WHY JOURNEY JAPAN</p>
+        <div class="about-grid about-grid--three">
+          <article class="about-card about-card--accent">
+            <h3>Authentic Japan</h3>
+            <p>We design with cultural awareness and a respect for how Japan actually works on the ground.</p>
+          </article>
+          <article class="about-card about-card--accent">
+            <h3>Thoughtful planning</h3>
+            <p>We care about the route, the rhythm and the small choices that make the journey easier.</p>
+          </article>
+          <article class="about-card about-card--accent">
+            <h3>Personal support</h3>
+            <p>We build itineraries around real travelers, not templates.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-cta about-reveal">
+      <div class="container about-cta__card">
+        <div>
+          <p class="about-section__eyebrow">READY TO BEGIN?</p>
+          <h2>Make your Japan journey feel considered from the very beginning.</h2>
+          <p>
+            Tell us what you want to experience, how you like to travel and what matters most to you. We will help shape the journey around it.
+          </p>
+        </div>
+        <div class="about-cta__actions">
+          <a class="button button--light" href="/customise-your-trip/">Plan Your Journey</a>
+          <a class="button button--outline button--outline-light" href="/packages/">Explore Packages</a>
+        </div>
+      </div>
+    </section>
+  </article>
+</Layout>
+
+<script>
+  const items = document.querySelectorAll('.about-reveal');
+  if (items.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    items.forEach((item) => observer.observe(item));
+  }
+</script>
+
+<style>
+  .about-page {
+    background: #f8f6f1;
+    color: #242424;
+    overflow-x: clip;
+  }
+
+  .about-hero {
+    background: #f8f6f1;
+    padding: clamp(96px, 10vw, 156px) 0 clamp(84px, 10vw, 132px);
+  }
+
+  .about-hero__inner {
+    max-width: 1040px;
+  }
+
+  .about-kicker,
+  .about-section__eyebrow {
+    margin: 0;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #8f1f26;
+  }
+
+  .about-hero__mark {
+    width: 52px;
+    height: 2px;
+    background: linear-gradient(90deg, #b3262e 0%, #b89a5a 100%);
+    margin: 24px 0 28px;
+    border-radius: 999px;
+  }
+
+  .about-hero h1 {
+    margin: 0;
+    max-width: 880px;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.96;
+    letter-spacing: -0.07em;
+    font-weight: 500;
+    color: #171717;
+  }
+
+  .about-hero__intro {
+    margin: 24px 0 0;
+    max-width: 780px;
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.72;
+    color: #6f6f6f;
+  }
+
+  .about-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 34px;
+  }
+
+  .button {
+    min-height: 52px;
+    padding: 0 24px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 220ms ease, background 220ms ease, color 220ms ease, border-color 220ms ease;
+  }
+
+  .button:hover,
+  .button:focus-visible {
+    transform: translateY(-2px);
+  }
+
+  .button--light {
+    background: #fff;
+    color: #171717;
+  }
+
+  .button--light:hover,
+  .button--light:focus-visible {
+    background: #b3262e;
+    color: #fff;
+  }
+
+  .button--outline {
+    border: 1px solid rgba(23, 23, 23, 0.12);
+    color: #171717;
+    background: transparent;
+  }
+
+  .button--outline-light {
+    border-color: rgba(255, 255, 255, 0.28);
+    color: #fff;
+  }
+
+  .button--outline-light:hover,
+  .button--outline-light:focus-visible {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+  }
+
+  .about-section {
+    padding: clamp(88px, 10vw, 144px) 0;
+  }
+
+  .about-section--white {
+    background: #fff;
+  }
+
+  .about-section--cream {
+    background: #f8f6f1;
+  }
+
+  .about-section__inner {
+    max-width: 1140px;
+  }
+
+  .about-split {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 42px;
+    align-items: start;
+  }
+
+  .about-section h2 {
+    margin: 14px 0 0;
+    font-size: clamp(34px, 4.4vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.06em;
+    font-weight: 500;
+    color: #171717;
+  }
+
+  .about-copy,
+  .about-highlight p,
+  .about-note p,
+  .about-cta__card p,
+  .about-card p {
+    color: #6f6f6f;
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  .about-copy {
+    display: grid;
+    gap: 16px;
+  }
+
+  .about-highlight {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+    gap: 24px;
+    margin-top: 10px;
+  }
+
+  .about-stats {
+    display: grid;
+    gap: 14px;
+  }
+
+  .about-stat,
+  .about-note {
+    background: #fff;
+    border: 1px solid rgba(23, 23, 23, 0.06);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .about-stat strong {
+    display: block;
+    color: #171717;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+
+  .about-stat span {
+    display: block;
+    margin-top: 8px;
+    color: #6f6f6f;
+    line-height: 1.6;
+  }
+
+  .about-note {
+    display: flex;
+    align-items: center;
+    border-left: 3px solid #b3262e;
+  }
+
+  .about-grid {
+    display: grid;
+    gap: 18px;
+  }
+
+  .about-grid--mt {
+    margin-top: 28px;
+  }
+
+  .about-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .about-grid--four {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .about-card {
+    background: #fff;
+    border: 1px solid rgba(23, 23, 23, 0.06);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.05);
+  }
+
+  .about-card h3 {
+    margin: 0;
+    color: #171717;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.12;
+  }
+
+  .about-card p {
+    margin: 12px 0 0;
+  }
+
+  .about-card--soft {
+    background: rgba(255, 255, 255, 0.84);
+  }
+
+  .about-card--support {
+    min-height: 100%;
+  }
+
+  .about-card--accent {
+    border-top: 2px solid rgba(179, 38, 46, 0.32);
+  }
+
+  .about-gallery {
+    column-count: 4;
+    column-gap: 20px;
+    margin-top: 34px;
+  }
+
+  .about-photo {
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 20px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #fff;
+    break-inside: avoid;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  }
+
+  .about-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 400ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .about-photo:hover img {
+      transform: scale(1.02);
+    }
+  }
+
+  .about-copy--quote {
+    padding-left: 18px;
+    border-left: 3px solid rgba(179, 38, 46, 0.22);
+  }
+
+  .about-cta {
+    padding: 0 0 clamp(90px, 10vw, 140px);
+    background: #f8f6f1;
+  }
+
+  .about-cta__card {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: center;
+    border-radius: 28px;
+    padding: clamp(34px, 5vw, 64px);
+    background: #171717;
+    color: #fff;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+  }
+
+  .about-cta__card h2 {
+    color: #fff;
+    max-width: 700px;
+  }
+
+  .about-cta__card p {
+    color: rgba(255, 255, 255, 0.78);
+    max-width: 650px;
+    margin-top: 16px;
+  }
+
+  .about-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .about-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 700ms ease, transform 700ms ease;
+  }
+
+  .about-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 1024px) {
+    .about-split,
+    .about-highlight {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .about-grid--four,
+    .about-grid--three {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .about-gallery {
+      column-count: 2;
+      column-gap: 16px;
+    }
+
+    .about-cta__card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .about-cta__actions {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .about-hero {
+      padding-top: 88px;
+    }
+
+    .about-split,
+    .about-highlight,
+    .about-grid--four,
+    .about-grid--three {
+      grid-template-columns: 1fr;
+    }
+
+    .about-gallery {
+      column-count: 1;
+      column-gap: 0;
+    }
+
+    .about-hero__actions,
+    .about-cta__actions {
+      width: 100%;
+    }
+
+    .button {
+      width: 100%;
+    }
+
+    .about-card,
+    .about-stat,
+    .about-note {
+      padding: 22px;
+    }
+  }
+</style>

@@ -1,0 +1,80 @@
+/* Design tokens for Journey Japan */
+:root{
+  /* Colors */
+  --color-white: #FFFFFF;
+  --color-cream: #F8F6F1; /* warm off-white */
+  --color-charcoal: #171717; /* dark text */
+  --color-red: #B3262E; /* Japanese red accent */
+  --color-gold: #B89A5A; /* warm gold */
+  --color-sakura: #F3DDE1; /* soft sakura pink */
+  --color-muted: #6F6F6F;
+  --color-border: rgba(23,23,23,0.06);
+  --color-surface: #FFFFFF;
+
+  /* Layout */
+  --container-width: 1200px;
+  --container-wide: 1440px;
+  --section-padding: 80px;
+  --section-padding-mobile: 36px;
+  --content-gap: 24px;
+
+  /* Typography */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --display-heading: 56px; /* large editorial */
+  --large-heading: 40px;
+  --section-heading: 28px;
+  --body-size: 18px;
+  --small-size: 14px;
+  --eyebrow-size: 13px;
+  --lead-line-height: 1.6;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* Shadows */
+  --shadow-soft: 0 10px 30px rgba(23,23,23,0.06);
+  --shadow-subtle: 0 4px 14px rgba(23,23,23,0.04);
+
+  /* Transitions */
+  --transition-fast: 180ms cubic-bezier(.2,.8,.2,1);
+  --transition-medium: 360ms cubic-bezier(.2,.8,.2,1);
+}
+
+@media (prefers-reduced-motion: reduce){
+  :root{ --transition-medium: 0ms; --transition-fast:0ms; }
+}
+
+/* JJ design tokens (added alongside existing tokens) */
+:root{
+  --jj-white: #FFFFFF;
+  --jj-cream: #F8F6F1;
+  --jj-charcoal: #171717;
+  --jj-text: #242424;
+  --jj-muted: #6F6F6F;
+  --jj-red: #B3262E;
+  --jj-gold: #B89A5A;
+  --jj-sakura: #F3DDE1;
+
+  --jj-border: rgba(23, 23, 23, 0.10);
+  --jj-white-border: rgba(255,255,255,0.35);
+
+  --jj-container: 1280px;
+  --jj-section-padding: clamp(90px, 10vw, 160px);
+
+  --jj-radius-sm: 10px;
+  --jj-radius-md: 16px;
+  --jj-radius-lg: 22px;
+
+  --jj-transition: 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Responsive breakpoints */
+:root{
+  --bp-mobile: 0px;
+  --bp-tablet: 768px;
+  --bp-laptop: 1024px;
+  --bp-desktop: 1440px;
+}

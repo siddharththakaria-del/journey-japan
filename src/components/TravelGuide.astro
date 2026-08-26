@@ -1,0 +1,70 @@
+---
+import { articles } from '../data/articles';
+
+const guideSlugs = [
+  'japan-travel-guide-for-first-time-visitors',
+  'best-time-to-visit-japan',
+  'how-much-does-a-japan-trip-cost'
+];
+const guideArticles = guideSlugs
+  .map((slug) => articles.find((article) => article.slug === slug))
+  .filter((article): article is (typeof articles)[number] => Boolean(article));
+const vegetarianArticle = articles.find((article) => article.slug === 'vegetarian-and-jain-food-in-japan');
+---
+
+<section class="travel-guide" aria-labelledby="travel-guide-heading">
+  <div class="jj-container">
+    <header class="section-header">
+      <div class="eyebrow">JAPAN TRAVEL GUIDE</div>
+      <h2 id="travel-guide-heading">Know Japan before you go.</h2>
+      <p>Planning Japan becomes easier when you understand seasons, transport, costs, food, etiquette and the rhythm of moving between regions.</p>
+    </header>
+
+    <div class="guide-grid">
+      {guideArticles.map((article) => (
+        <article class="guide-card">
+          <a href={`/travel-guide/${article.slug}/`} class="article-link" aria-label={article.title}>
+            <img src={article.image} alt={article.title} />
+            <div class="article-copy">
+              <div class="article-category">{article.category}</div>
+              <h3>{article.title}</h3>
+              <p>{article.excerpt}</p>
+              <div class="article-meta">{article.readingTime}</div>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <div class="guide-footer">
+      <a class="text-link" href={`/travel-guide/${vegetarianArticle?.slug}/`}>Vegetarian &amp; Jain Food in Japan <span aria-hidden="true">→</span></a>
+      <a href="/travel-guide/" class="travel-guide-link">Explore the Travel Guide <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<style>
+.travel-guide{background:var(--jj-cream);padding:clamp(76px,9vw,110px) 0}
+.section-header{max-width:720px;margin-bottom:30px}
+.eyebrow{color:var(--jj-red);font-size:12px;font-weight:600;letter-spacing:0.15em;margin-bottom:12px}
+.section-header h2{margin:0;color:var(--jj-charcoal);font-size:clamp(36px,4vw,60px);line-height:1.05;font-weight:500;letter-spacing:-0.04em}
+.section-header p{margin-top:14px;max-width:680px;color:var(--jj-muted);font-size:17px;line-height:1.7}
+
+.guide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.guide-card{border-radius:18px;overflow:hidden;background:var(--jj-white);border:1px solid rgba(23,23,23,0.06)}
+.article-link{display:block;height:100%;color:inherit}
+.guide-card img{display:block;width:100%;aspect-ratio:16 / 10;object-fit:cover}
+.article-copy{padding:16px 16px 18px}
+.article-category{color:var(--jj-red);font-size:11px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase}
+.article-copy h3{margin:10px 0 10px;color:var(--jj-charcoal);font-size:24px;line-height:1.2;font-weight:500}
+.article-copy p{margin:0;color:var(--jj-muted);font-size:15px;line-height:1.6}
+.article-meta{margin-top:12px;color:var(--jj-muted);font-size:12px}
+
+.guide-footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center;margin-top:22px}
+.text-link,.travel-guide-link{display:inline-flex;align-items:center;gap:8px;color:var(--jj-red);font-weight:600;text-decoration:none}
+.text-link span,.travel-guide-link span{color:var(--jj-red)}
+
+@media(max-width:900px){
+  .guide-grid{grid-template-columns:1fr}
+}
+</style>

@@ -1,0 +1,26 @@
+---
+import "../styles/global.css";
+import PageMeta from '../components/PageMeta.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const {
+  title = 'Journey Japan',
+  description,
+  canonical,
+  image,
+  titleSuffix
+} = Astro.props;
+---
+<html lang="en">
+  <head>
+    <PageMeta title={title} description={description} canonical={canonical} image={image} titleSuffix={titleSuffix} />
+  </head>
+  <body>
+    <Navbar />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

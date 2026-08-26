@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { testimonials } from '../data/testimonials';
+import TestimonialCard from '../components/TestimonialCard.astro';
+---
+<Layout title="Testimonials | Journey Japan">
+  <section class="section">
+    <div class="container">
+      <h1 class="h2">Testimonials</h1>
+      <p class="lead">What our travellers say about their Journey Japan experience.</p>
+
+      <div style="display:grid;gap:12px;margin-top:12px">
+        {testimonials.map(t=> <TestimonialCard {...t} />)}
+      </div>
+    </div>
+  </section>
+</Layout>

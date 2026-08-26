@@ -1,0 +1,15 @@
+---
+const faqs = Astro.props as { items: { q: string; a: string }[] };
+---
+<section class="section">
+  <div class="container">
+    <div style="display:grid;gap:12px">
+      {faqs.items.map((f, i) => (
+        <details>
+          <summary style="cursor:pointer;padding:12px;border-radius:8px;background:var(--color-surface);box-shadow:var(--shadow-soft)">{f.q}</summary>
+          <div style="padding:12px;border-left:3px solid rgba(182,43,43,0.06)">{f.a}</div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
