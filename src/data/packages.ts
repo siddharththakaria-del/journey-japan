@@ -100,7 +100,7 @@ export const packages: Package[] = [
     destinations: 'Tokyo · Kyoto · Osaka',
     description: 'A refined introduction to Japan with iconic city highlights, cultural depth and a seamless rhythm.',
     price: 229990,
-    image: '/images/packages/classic-japan/classic-japan-hero.webp',
+    image: '/journey-japan/images/packages/classic-japan/classic-japan-hero.webp',
     highlights: ['Tokyo experiences', 'Kyoto heritage', 'Osaka dining'],
     destination: 'Tokyo · Kyoto · Osaka',
     travelType: 'general',
@@ -236,19 +236,19 @@ export const packages: Package[] = [
     destinationPanels: [
       {
         name: 'Tokyo',
-        image: '/images/packages/classic-japan/classic-japan-tokyo.webp',
+        image: '/journey-japan/images/packages/classic-japan/classic-japan-tokyo.webp',
         description: 'Where tradition and innovation exist side by side.',
         highlights: ['Urban culture', 'Tradition', 'Dining']
       },
       {
         name: 'Kyoto',
-        image: '/images/packages/classic-japan/classic-japan-kyoto.webp',
+        image: '/journey-japan/images/packages/classic-japan/classic-japan-kyoto.webp',
         description: 'Japan’s timeless cultural heart.',
         highlights: ['Heritage', 'Temple districts', 'Classic streets']
       },
       {
         name: 'Osaka',
-        image: '/images/packages/classic-japan/classic-japan-osaka.webp',
+        image: '/journey-japan/images/packages/classic-japan/classic-japan-osaka.webp',
         description: 'Warm, energetic and made for food lovers.',
         highlights: ['Food culture', 'Lively city atmosphere', 'Flexible evenings']
       }
@@ -284,7 +284,7 @@ export const packages: Package[] = [
         'Jain-friendly arrangements',
         'Local Japanese food experiences'
       ],
-      image: '/images/packages/classic-japan/classic-japan-food.webp'
+      image: '/journey-japan/images/packages/classic-japan/classic-japan-food.webp'
     },
     includedItems: [
       'Accommodation',
@@ -308,25 +308,25 @@ export const packages: Package[] = [
       {
         title: 'Private Kyoto cultural experience',
         description: 'Optional',
-        image: '/images/destinations/kyoto.webp',
+        image: '/journey-japan/images/destinations/kyoto.webp',
         label: 'Optional'
       },
       {
         title: 'Japanese tea experience',
         description: 'Optional',
-        image: '/images/experiences/japanese-culture.webp',
+        image: '/journey-japan/images/experiences/japanese-culture.webp',
         label: 'Optional'
       },
       {
         title: 'Hakone onsen experience',
         description: 'Optional',
-        image: '/images/hero/japan-hero.webp',
+        image: '/journey-japan/images/hero/japan-hero.webp',
         label: 'Optional'
       },
       {
         title: 'Osaka evening experience',
         description: 'Optional',
-        image: '/images/destinations/tokyo.webp',
+        image: '/journey-japan/images/destinations/tokyo.webp',
         label: 'Optional'
       }
     ],
@@ -386,7 +386,7 @@ export const packages: Package[] = [
       heading: 'Ready to experience Japan beyond the ordinary?',
       description:
         "Tell us your preferred dates, interests and travel style. We'll help you turn Classic Japan into a journey that feels right for you.",
-      image: '/images/hero/japan-hero.webp'
+      image: '/journey-japan/images/hero/japan-hero.webp'
     }
   },
   {
@@ -399,7 +399,7 @@ export const packages: Package[] = [
     destinations: 'Tokyo · Kyoto',
     description: 'A compact introduction to Tokyo and Kyoto that balances modern city life with timeless Japanese culture.',
     price: 179990,
-    image: '/images/packages/tokyo-kyoto-escape/tokyo-kyoto-escape-hero.webp',
+    image: '/journey-japan/images/packages/tokyo-kyoto-escape/tokyo-kyoto-escape-hero.webp',
     highlights: ['Tokyo rhythm', 'Kyoto heritage', 'Compact pacing'],
     destination: 'Tokyo · Kyoto',
     travelType: 'general',
@@ -507,13 +507,13 @@ export const packages: Package[] = [
     citySections: [
       {
         name: 'Tokyo',
-        image: '/images/packages/tokyo-kyoto-escape/tokyo-kyoto-escape-tokyo.webp',
+        image: '/journey-japan/images/packages/tokyo-kyoto-escape/tokyo-kyoto-escape-tokyo.webp',
         description: 'The energy of modern Japan.',
         highlights: ['Modern Tokyo', 'Hidden neighbourhoods', 'Tokyo after dark']
       },
       {
         name: 'Kyoto',
-        image: '/images/packages/tokyo-kyoto-escape/tokyo-kyoto-escape-kyoto.webp',
+        image: '/journey-japan/images/packages/tokyo-kyoto-escape/tokyo-kyoto-escape-kyoto.webp',
         description: 'Slow down and discover tradition.',
         highlights: ['Historic streets', 'Traditional architecture', 'Slower pace']
       }
@@ -541,7 +541,7 @@ export const packages: Package[] = [
       description:
         'Food is part of the journey, and dietary preferences should never feel like an afterthought. Vegetarian and Jain-friendly dining arrangements can be incorporated into the trip through thoughtful planning and restaurant selection.',
       points: ['Vegetarian-friendly', 'Jain-friendly', 'Japanese cuisine'],
-      image: '/images/packages/tokyo-kyoto-escape/tokyo-kyoto-escape-dining.webp'
+      image: '/journey-japan/images/packages/tokyo-kyoto-escape/tokyo-kyoto-escape-dining.webp'
     },
     includedItems: [
       'Accommodation',
@@ -625,7 +625,7 @@ export const packages: Package[] = [
       heading: 'Ready to discover Tokyo and Kyoto?',
       description:
         "Tell us when you want to travel and what you'd like to experience. We'll help you shape the right Japan journey.",
-      image: '/images/packages/tokyo-kyoto-escape/tokyo-kyoto-escape-hero.webp'
+      image: '/journey-japan/images/packages/tokyo-kyoto-escape/tokyo-kyoto-escape-hero.webp'
     }
   },
   {
@@ -638,7 +638,7 @@ export const packages: Package[] = [
     destinations: 'Tokyo · Hakone · Kyoto · Nara · Osaka',
     description: 'An elegant route through Japan’s signature landscapes, cultural centres and memorable city moments.',
     price: 319990,
-    image: '/images/packages/golden-route.webp',
+    image: '/journey-japan/images/packages/golden-route.webp',
     highlights: ['Hakone scenery', 'Nara heritage', 'Kyoto evenings'],
     destination: 'Tokyo · Hakone · Kyoto · Nara · Osaka',
     travelType: 'general',
@@ -655,7 +655,7 @@ export const packages: Package[] = [
     destinations: 'Tokyo · Mount Fuji · Kyoto · Osaka · Hiroshima',
     description: 'A complete cultural and scenic journey shaped for travelers who want a fuller picture of Japan.',
     price: 399990,
-    image: '/images/packages/japan-discovery.webp',
+    image: '/journey-japan/images/packages/japan-discovery.webp',
     highlights: ['Mount Fuji views', 'Hiroshima reflection', 'Kyoto culture'],
     destination: 'Tokyo · Mount Fuji · Kyoto · Osaka · Hiroshima',
     travelType: 'general',
@@ -672,7 +672,7 @@ export const packages: Package[] = [
     destinations: 'Tokyo · Kyoto · Osaka',
     description: 'Group travel with clear planning, shared experiences and the comfort of expert support throughout.',
     price: 259990,
-    image: '/images/packages/group-japan.webp',
+    image: '/journey-japan/images/packages/group-japan.webp',
     highlights: ['Shared city tours', 'Comfortable logistics', 'Flexible pacing'],
     destination: 'Tokyo · Kyoto · Osaka',
     travelType: 'general',
@@ -689,7 +689,7 @@ export const packages: Package[] = [
     destinations: 'Tokyo · Kyoto · Nara · Osaka',
     description: 'Designed for travelers who want seasonal color, cultural moments and easy group coordination.',
     price: 279990,
-    image: '/images/packages/autumn-group.webp',
+    image: '/journey-japan/images/packages/autumn-group.webp',
     highlights: ['Seasonal scenery', 'Group-friendly routing', 'Temple visits'],
     destination: 'Tokyo · Kyoto · Nara · Osaka',
     travelType: 'general',
@@ -706,7 +706,7 @@ export const packages: Package[] = [
     destinations: 'Tokyo · Kyoto · Osaka · Nara',
     description: 'A spring-focused excursion for groups wanting a classic Japan itinerary in bloom.',
     price: 289990,
-    image: '/images/packages/cherry-blossom-group.webp',
+    image: '/journey-japan/images/packages/cherry-blossom-group.webp',
     highlights: ['Hanami moments', 'Historic gardens', 'Spring routing'],
     destination: 'Tokyo · Kyoto · Osaka · Nara',
     travelType: 'general',
@@ -723,7 +723,7 @@ export const packages: Package[] = [
     destinations: 'Tokyo',
     description: 'Flexible independent travel in Tokyo with tailored recommendations and carefully selected experiences.',
     price: 129990,
-    image: '/images/packages/tokyo-fit.webp',
+    image: '/journey-japan/images/packages/tokyo-fit.webp',
     highlights: ['Independent rhythm', 'Smart city planning', 'Flexible days'],
     destination: 'Tokyo',
     travelType: 'general',
@@ -740,7 +740,7 @@ export const packages: Package[] = [
     destinations: 'Tokyo · Kyoto',
     description: 'A freedom-led city stay with structure, support and room to shape your own journey.',
     price: 169990,
-    image: '/images/packages/tokyo-kyoto-fit.webp',
+    image: '/journey-japan/images/packages/tokyo-kyoto-fit.webp',
     highlights: ['Flexible route', 'Selective experiences', 'Travel support'],
     destination: 'Tokyo · Kyoto',
     travelType: 'general',
@@ -757,7 +757,7 @@ export const packages: Package[] = [
     destinations: 'Tokyo · Hakone · Kyoto · Osaka',
     description: 'Flexible independent travel with well-chosen stays, train coordination and thoughtful planning.',
     price: 239990,
-    image: '/images/packages/japan-fit.webp',
+    image: '/journey-japan/images/packages/japan-fit.webp',
     highlights: ['Rail coordination', 'Independent flexibility', 'Curated support'],
     destination: 'Tokyo · Hakone · Kyoto · Osaka',
     travelType: 'general',
@@ -774,7 +774,7 @@ export const packages: Package[] = [
     destinations: 'Customizable',
     description: 'A fully private Japan journey shaped around your interests, pace and travel style.',
     price: 319990,
-    image: '/images/packages/private-japan.webp',
+    image: '/journey-japan/images/packages/private-japan.webp',
     highlights: ['Private guide options', 'Flexible routing', 'Tailored travel rhythm'],
     destination: 'Customizable',
     travelType: 'general',
@@ -791,7 +791,7 @@ export const packages: Package[] = [
     destinations: 'Tokyo · Hakone · Kyoto',
     description: 'A premium private itinerary designed for refined, relaxation-first travel in Japan.',
     price: 549990,
-    image: '/images/packages/luxury-japan.webp',
+    image: '/journey-japan/images/packages/luxury-japan.webp',
     highlights: ['Luxury stays', 'Private experiences', 'High-touch planning'],
     destination: 'Tokyo · Hakone · Kyoto',
     travelType: 'luxury',
@@ -808,7 +808,7 @@ export const packages: Package[] = [
     destinations: 'Tokyo · Hakone · Kyoto',
     description: 'A romantic route with special moments, scenic stays and intimate experiences across Japan.',
     price: 349990,
-    image: '/images/packages/japan-honeymoon.webp',
+    image: '/journey-japan/images/packages/japan-honeymoon.webp',
     highlights: ['Honeymoon stays', 'Private onsen', 'Romantic experiences'],
     destination: 'Tokyo · Hakone · Kyoto',
     travelType: 'honeymoon',
@@ -825,7 +825,7 @@ export const packages: Package[] = [
     destinations: 'Tokyo · Hakone · Kyoto · Osaka',
     description: 'An elevated honeymoon with privacy, exceptional stays and immersive cultural moments.',
     price: 699990,
-    image: '/images/packages/luxury-honeymoon.webp',
+    image: '/journey-japan/images/packages/luxury-honeymoon.webp',
     highlights: ['Luxury ryokan', 'Private dining', 'Warm, intimate planning'],
     destination: 'Tokyo · Hakone · Kyoto · Osaka',
     travelType: 'honeymoon, luxury',
@@ -842,7 +842,7 @@ export const packages: Package[] = [
     destinations: 'Tokyo · Kyoto · Osaka',
     description: 'A family-friendly route balancing fun, culture and comfortable pacing for all ages.',
     price: 259990,
-    image: '/images/packages/family-japan.webp',
+    image: '/journey-japan/images/packages/family-japan.webp',
     highlights: ['Family-friendly pacing', 'Comfortable hotels', 'Guided culture time'],
     destination: 'Tokyo · Kyoto · Osaka',
     travelType: 'family',
@@ -859,7 +859,7 @@ export const packages: Package[] = [
     destinations: 'Tokyo · Mount Fuji · Kyoto',
     description: 'Thoughtful family travel designed to keep the journey enjoyable, interactive and effortless.',
     price: 219990,
-    image: '/images/packages/family-discovery.webp',
+    image: '/journey-japan/images/packages/family-discovery.webp',
     highlights: ['Mount Fuji day', 'Flexible family activities', 'Easy logistics'],
     destination: 'Tokyo · Mount Fuji · Kyoto',
     travelType: 'family',

@@ -12,7 +12,7 @@ export const testimonials: Testimonial[] = [
     quote: 'A beautifully curated trip — authentic, effortless and deeply memorable.',
     author: 'Guest Name',
     location: 'Couple from India',
-    image: '/images/about/testimonial-1.webp'
+    image: '/journey-japan/images/about/testimonial-1.webp'
   },
   {
     id: 't2',

@@ -1290,7 +1290,7 @@ export const articles: Article[] = [
     category: 'Japan Travel',
     date: '2026-02-02',
     readingTime: '8 min',
-    image: '/images/about/journey-japan-heritage.webp',
+    image: '/journey-japan/images/about/journey-japan-heritage.webp',
     excerpt:
       "A practical first-timer's guide to planning Japan, from transport and etiquette to food, seasons, connectivity and building a realistic itinerary.",
     updatedLabel: 'Updated February 2026',
@@ -1313,7 +1313,7 @@ export const articles: Article[] = [
     category: 'Planning',
     date: '2026-01-10',
     readingTime: '9 min',
-    image: '/images/hero/japan-hero.webp',
+    image: '/journey-japan/images/hero/japan-hero.webp',
     excerpt:
       'A seasonal guide to help you choose the best time to visit Japan depending on weather, festivals, scenery and travel style.',
     updatedLabel: 'Updated January 2026',
@@ -1336,7 +1336,7 @@ export const articles: Article[] = [
     category: 'Planning',
     date: '2026-04-18',
     readingTime: '8 min',
-    image: '/images/destinations/tokyo.webp',
+    image: '/journey-japan/images/destinations/tokyo.webp',
     excerpt:
       'A practical guide to budgeting for Japan, covering accommodation, transport, food, experiences, flights and the choices that can shape the overall cost of your journey.',
     heroIntro:
@@ -1363,7 +1363,7 @@ export const articles: Article[] = [
     category: 'Food',
     date: '2026-03-15',
     readingTime: '9 min',
-    image: '/images/food/japan-vegetarian-food.webp',
+    image: '/journey-japan/images/food/japan-vegetarian-food.webp',
     excerpt:
       'A practical guide to vegetarian and Jain dining in Japan, covering hidden ingredients, dashi, restaurant communication and how Journey Japan plans suitable meals throughout your journey.',
     heroIntro:
@@ -1390,7 +1390,7 @@ export const articles: Article[] = [
     category: 'Honeymoon',
     date: '2026-05-28',
     readingTime: '9 min',
-    image: '/images/packages/japan-honeymoon.webp',
+    image: '/journey-japan/images/packages/japan-honeymoon.webp',
     excerpt:
       'A thoughtful guide to planning a Japan honeymoon, from romantic stays and scenic experiences to seasonal travel, dining and creating the right pace for two.',
     heroIntro:

@@ -1,12 +1,12 @@
 ---
 const travelTypes = [
-  { id: 'couples', label: 'Couples', description: 'Slow mornings, memorable experiences and time to discover Japan together.', image: '/images/destinations/tokyo.webp', active: true },
-  { id: 'honeymoon', label: 'Honeymoon', description: 'Romantic stays, private experiences and carefully planned moments.', image: '/images/packages/japan-honeymoon.webp' },
-  { id: 'family', label: 'Family', description: 'Comfortable, flexible journeys designed around the whole family.', image: '/images/packages/japan-family.webp' },
-  { id: 'group', label: 'Group', description: 'Thoughtfully coordinated Japan travel for friends and larger groups.', image: '/images/destinations/kyoto.webp' },
-  { id: 'luxury', label: 'Luxury', description: 'Exceptional stays, private experiences and a more refined way to travel.', image: '/images/packages/japan-honeymoon.webp' },
-  { id: 'corporate', label: 'Corporate', description: 'Seamless travel planning for business trips, incentives and corporate groups.', image: '/images/destinations/tokyo.webp' },
-  { id: 'solo', label: 'Solo', description: 'Freedom to explore Japan with a journey designed around your interests.', image: '/images/destinations/mount-fuji.webp' }
+  { id: 'couples', label: 'Couples', description: 'Slow mornings, memorable experiences and time to discover Japan together.', image: '/journey-japan/images/destinations/tokyo.webp', active: true },
+  { id: 'honeymoon', label: 'Honeymoon', description: 'Romantic stays, private experiences and carefully planned moments.', image: '/journey-japan/images/packages/japan-honeymoon.webp' },
+  { id: 'family', label: 'Family', description: 'Comfortable, flexible journeys designed around the whole family.', image: '/journey-japan/images/packages/japan-family.webp' },
+  { id: 'group', label: 'Group', description: 'Thoughtfully coordinated Japan travel for friends and larger groups.', image: '/journey-japan/images/destinations/kyoto.webp' },
+  { id: 'luxury', label: 'Luxury', description: 'Exceptional stays, private experiences and a more refined way to travel.', image: '/journey-japan/images/packages/japan-honeymoon.webp' },
+  { id: 'corporate', label: 'Corporate', description: 'Seamless travel planning for business trips, incentives and corporate groups.', image: '/journey-japan/images/destinations/tokyo.webp' },
+  { id: 'solo', label: 'Solo', description: 'Freedom to explore Japan with a journey designed around your interests.', image: '/journey-japan/images/destinations/mount-fuji.webp' }
 ];
 ---
 
@@ -37,8 +37,8 @@ const travelTypes = [
     </div>
 
     <div class="travel-actions">
-      <a class="primary-cta" href="/customise-your-trip/">Create My Journey</a>
-      <a class="secondary-cta" href="/packages/">Explore Japan Packages <span aria-hidden="true">→</span></a>
+      <a class="primary-cta" href="/journey-japan/customise-your-trip/">Create My Journey</a>
+      <a class="secondary-cta" href="/journey-japan/packages/">Explore Japan Packages <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -88,13 +88,13 @@ const travelTypes = [
   const image = document.querySelector('.travel-image');
   const descriptionNode = document.querySelector('.travel-description');
   const dataMap = {
-    couples: { image: '/images/destinations/tokyo.webp', description: 'Slow mornings, memorable experiences and time to discover Japan together.' },
-    honeymoon: { image: '/images/packages/japan-honeymoon.webp', description: 'Romantic stays, private experiences and carefully planned moments.' },
-    family: { image: '/images/packages/japan-family.webp', description: 'Comfortable, flexible journeys designed around the whole family.' },
-    group: { image: '/images/destinations/kyoto.webp', description: 'Thoughtfully coordinated Japan travel for friends and larger groups.' },
-    luxury: { image: '/images/packages/japan-honeymoon.webp', description: 'Exceptional stays, private experiences and a more refined way to travel.' },
-    corporate: { image: '/images/destinations/tokyo.webp', description: 'Seamless travel planning for business trips, incentives and corporate groups.' },
-    solo: { image: '/images/destinations/mount-fuji.webp', description: 'Freedom to explore Japan with a journey designed around your interests.' }
+    couples: { image: '/journey-japan/images/destinations/tokyo.webp', description: 'Slow mornings, memorable experiences and time to discover Japan together.' },
+    honeymoon: { image: '/journey-japan/images/packages/japan-honeymoon.webp', description: 'Romantic stays, private experiences and carefully planned moments.' },
+    family: { image: '/journey-japan/images/packages/japan-family.webp', description: 'Comfortable, flexible journeys designed around the whole family.' },
+    group: { image: '/journey-japan/images/destinations/kyoto.webp', description: 'Thoughtfully coordinated Japan travel for friends and larger groups.' },
+    luxury: { image: '/journey-japan/images/packages/japan-honeymoon.webp', description: 'Exceptional stays, private experiences and a more refined way to travel.' },
+    corporate: { image: '/journey-japan/images/destinations/tokyo.webp', description: 'Seamless travel planning for business trips, incentives and corporate groups.' },
+    solo: { image: '/journey-japan/images/destinations/mount-fuji.webp', description: 'Freedom to explore Japan with a journey designed around your interests.' }
   };
 
   buttons.forEach((button) => {
